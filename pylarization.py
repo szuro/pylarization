@@ -3,21 +3,21 @@ Module containing classes used for describing light polarization.
 """
 
 
-class Elliptic(object):
+class Ellipse(object):
     """
     Class for describing polarization state using trygonometry.
     """
     pass
 
 
-class Jones(Elliptic):
+class Jones(Ellipse):
     """
     Class for describing polarization state using Jones vector.
     """
     pass
 
 
-class Stokes(Elliptic):
+class Stokes(Ellipse):
     """
     Class for describing polarization state using Stokes vector.
     """
