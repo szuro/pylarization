@@ -1,8 +1,3 @@
-"""
-Module containing classes used for describing light polarization.
-"""
-
-
 class Ellipse(object):
     """
     Class for describing polarization state using trygonometry.
@@ -16,17 +11,3 @@ class Ellipse(object):
         self._ellipticity_angle = 0
         self._azimuth = 0
         self._phase = 0
-
-
-class Jones(Ellipse):
-    """
-    Class for describing polarization state using Jones vector.
-    """
-    pass
-
-
-class Stokes(Ellipse):
-    """
-    Class for describing polarization state using Stokes vector.
-    """
-    pass
