@@ -1,3 +1,8 @@
+"""
+Module containing a class describing polarization state using trigonometry.
+"""
+
+
 class Ellipse(object):
     """
     Class for describing polarization state using trygonometry.
