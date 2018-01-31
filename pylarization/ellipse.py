@@ -3,7 +3,7 @@ Module containing a class describing polarization state using trigonometry.
 """
 
 
-class Ellipse(object):
+class PolariaztionEllipse(object):
     """
     Class for describing polarization state using trygonometry.
     _ellipticity_angle - assuming A is equal to half of the major axis and
