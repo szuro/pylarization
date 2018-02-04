@@ -12,36 +12,47 @@ class PolariaztionEllipse(object):
         ellipticity_angle is equal to B/A.
     _azimuth - angle between the major axis of the ellipse and the x-axis.
     _phase - the phase difference between x and y components.
+    _diagonal_angle - ratio between amplitudes of light.
     """
     def __init__(self):
         self._amplitudes = np.matrix([[0], [0]])
         self._ellipticity_angle = 0
         self._azimuth = 0
         self._phase = 0
+        self._diagonal_angle = 0
+
+    def _get_property(self, name, degrees=False):
+        """
+        Return given property in degrees or radians.
+        """
+        if degrees:
+            return np.rad2deg(name)
+        return name
 
     def get_phase(self, degrees=False):
         """
         Return the phase difference of light amplitudes.
         Degrees are optional as numpy uses radians internally.
         """
-        if degrees:
-            return np.rad2deg(self._phase)
-        return self._phase
+        return self._get_property(self._phase, degrees)
 
     def get_azimuth(self, degrees=False):
         """
-        Return the phase difference of light amplitudes.
+        Return the azimuth property of light polarization.
         Degrees are optional as numpy uses radians internally.
         """
-        if degrees:
-            return np.rad2deg(self._azimuth)
-        return self._azimuth
+        return self._get_property(self._azimuth, degrees)
 
     def get_ellipticity_angle(self, degrees=False):
         """
-        Return the phase difference of light amplitudes.
+        Return the ratio of minor to major ellipse axis.
         Degrees are optional as numpy uses radians internally.
         """
-        if degrees:
-            return np.rad2deg(self._ellipticity_angle)
-        return self._ellipticity_angle
+        return self._get_property(self._ellipticity_angle, degrees)
+
+    def get_diagonal_angle(self, degrees=False):
+        """
+        Return the diagonal angle of th rectangle created by light amplitudes.
+        Degrees are optional as numpy uses radians internally.
+        """
+        return self._get_property(self._diagonal_angle, degrees)
