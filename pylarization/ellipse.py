@@ -14,12 +14,14 @@ class PolariaztionEllipse(object):
     _phase - the phase difference between x and y components.
     _diagonal_angle - ratio between amplitudes of light.
     """
-    def __init__(self):
-        self._amplitudes = np.matrix([[0], [0]])
-        self._ellipticity_angle = 0
-        self._azimuth = 0
-        self._phase = 0
-        self._diagonal_angle = 0
+    def __init__(self, **kwargs):
+        self._amplitudes = np.matrix([[0], [0]], dtype=complex)
+        self._amplitudes[0] = kwargs.get('Ex', 0.0)
+        self._amplitudes[1] = kwargs.get('Ey', 0.0)
+        self._ellipticity_angle = kwargs.get('ellipticity_angle')
+        self._azimuth = kwargs.get('azimuth')
+        self._phase = kwargs.get('phase')
+        self._diagonal_angle = kwargs.get('diagonal_angle')
 
     def _get_property(self, name, degrees=False):
         """
