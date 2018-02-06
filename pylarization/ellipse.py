@@ -16,8 +16,8 @@ class PolariaztionEllipse(object):
     """
     def __init__(self, **kwargs):
         self._amplitudes = np.matrix([[0], [0]], dtype=complex)
-        self._amplitudes[0] = kwargs.get('Ex', 0.0)
-        self._amplitudes[1] = kwargs.get('Ey', 0.0)
+        self._amplitudes[0] = kwargs.get('E0x', 0.0)
+        self._amplitudes[1] = kwargs.get('E0y', 0.0)
         self._ellipticity_angle = kwargs.get('ellipticity_angle')
         self._azimuth = kwargs.get('azimuth')
         self._phase = kwargs.get('phase')
