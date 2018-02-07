@@ -15,7 +15,7 @@ class PolariaztionEllipse(object):
     _diagonal_angle - ratio between amplitudes of light.
     """
     def __init__(self, **kwargs):
-        self._amplitudes = np.matrix([[0], [0]], dtype=complex)
+        self._amplitudes = np.matrix([[0], [0]], dtype=float)
         self._amplitudes[0] = kwargs.get('E0x', 0.0)
         self._amplitudes[1] = kwargs.get('E0y', 0.0)
         self._ellipticity_angle = kwargs.get('ellipticity_angle')
