@@ -67,7 +67,7 @@ class PolariaztionEllipse(object):
         """
         E0 = np.square(self._amplitudes).sum()
         compelent = self._calc_complement_diagonal_angle()
-        sqrt_in_numerator = np.sqrt(1 - np.square(np.sin(compelent)) * 
+        sqrt_in_numerator = np.sqrt(1 - np.square(np.sin(compelent)) *
                                     np.square(np.sin(self._phase))
                                     )
         self._minor_axis = E0 * np.sqrt(1 - sqrt_in_numerator) * np.sqrt(0.5)
