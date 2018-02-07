@@ -93,10 +93,14 @@ class PolariaztionEllipse(object):
             )
 
     def _calc_diagonal_angle_from_azimuth(self):
-        pass
+        self._diagonal_angle = 0.5 * np.arctan(
+            np.tan(2 * self._azimuth) / np.cos(self._phase)
+            )
 
     def _calc_diagonal_angle_from_ellipticity_angle(self):
-        pass
+        self._diagonal_angle = 0.5 * np.arcsin(
+            np.sin(2 * self._ellipticity_angle) / np.sin(self._phase)
+            )
 
     def _calc_phase(self):
         self._phase = np.arctan(
