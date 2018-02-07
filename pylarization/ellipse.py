@@ -22,6 +22,8 @@ class PolariaztionEllipse(object):
         self._azimuth = kwargs.get('azimuth')
         self._phase = kwargs.get('phase')
         self._diagonal_angle = kwargs.get('diagonal_angle')
+        self._minor_axis = 0
+        self._major_axis = 0
 
     def _get_property(self, name, degrees=False):
         """
@@ -58,3 +60,6 @@ class PolariaztionEllipse(object):
         Degrees are optional as numpy uses radians internally.
         """
         return self._get_property(self._diagonal_angle, degrees)
+
+    def _calc_axes(self):
+        pass
