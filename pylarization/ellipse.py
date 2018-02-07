@@ -62,4 +62,16 @@ class PolariaztionEllipse(object):
         return self._get_property(self._diagonal_angle, degrees)
 
     def _calc_axes(self):
-        pass
+        """
+        Calculate both axes of the ellipse.
+        """
+        E0 = np.square(self._amplitudes).sum()
+        compelent = self._calc_complement_diagonal_angle()
+        sqrt_in_numerator = np.sqrt(1 - np.square(np.sin(compelent)) * 
+                                        np.square(np.sin(self._phase))
+                                   )
+        self._minor_axis = E0 * np.sqrt(1 - sqrt_in_numerator) * np.sqrt(0.5)
+        self._major_axis = E0 * np.sqrt(1 + sqrt_in_numerator) * np.sqrt(0.5)
+
+    def _calc_complement_diagonal_angle(self):
+        return np.pi / 2 - self._diagonal_angle
