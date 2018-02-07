@@ -68,10 +68,38 @@ class PolariaztionEllipse(object):
         E0 = np.square(self._amplitudes).sum()
         compelent = self._calc_complement_diagonal_angle()
         sqrt_in_numerator = np.sqrt(1 - np.square(np.sin(compelent)) * 
-                                        np.square(np.sin(self._phase))
-                                   )
+                                    np.square(np.sin(self._phase))
+                                    )
         self._minor_axis = E0 * np.sqrt(1 - sqrt_in_numerator) * np.sqrt(0.5)
         self._major_axis = E0 * np.sqrt(1 + sqrt_in_numerator) * np.sqrt(0.5)
 
     def _calc_complement_diagonal_angle(self):
         return np.pi / 2 - self._diagonal_angle
+
+    def _calc_azimuth(self):
+        self._azimuth = 0.5 * np.arctan(
+            np.tan(2 * self._diagonal_angle) * np.cos(self._phase)
+            )
+
+    def _calc_ellipticity_angle(self):
+        self._ellipticity_angle = 0.5 * np.arcsin(
+            np.tan(2 * self._diagonal_angle) * np.sin(self._phase)
+            )
+
+    def _calc_diagonal_angle_from_amplitudes(self):
+        self._diagonal_angle = np.arctan(
+            self._amplitudes[1],
+            self._amplitudes[0]
+            )
+
+    def _calc_diagonal_angle_from_azimuth(self):
+        pass
+
+    def _calc_diagonal_angle_from_ellipticity_angle(self):
+        pass
+
+    def _calc_phase(self):
+        self._phase = np.arctan(
+            np.tan(2 * self._ellipticity_angle) /
+            np.sin(2 * self._azimuth)
+            )
