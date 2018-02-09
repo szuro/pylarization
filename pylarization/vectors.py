@@ -9,7 +9,14 @@ class JonesVector(PolarizationEllipse):
     """
     Class for describing polarization state using Jones vector.
     """
-    pass
+    def __init__(self, Ex, Ey):
+        pass
+
+    def simplify(self):
+        pass
+
+    def normalize(self):
+        pass
 
 
 class StokesVector(PolarizationEllipse):
