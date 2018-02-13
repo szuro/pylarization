@@ -23,6 +23,16 @@ class JonesVector(PolarizationEllipse):
         return self._vector[0].item(), self._vector[1].item()
 
     @property
+    def E0x(self):
+        """Return the value of amplitude along x axis"""
+        return self._get_amplitude(0)
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return self._get_amplitude(1)
+
+    @property
     def phase(self):
         """
         Return the phase difference of light amplitudes.
@@ -64,16 +74,6 @@ class JonesVector(PolarizationEllipse):
         return np.sqrt(
             self._vector[index] * np.conj(self._vector[index])
             ).item().real
-
-    @property
-    def E0x(self):
-        """Return the value of amplitude along x axis"""
-        return self._get_amplitude(0)
-
-    @property
-    def E0y(self):
-        """Return the value of amplitude along y axis"""
-        return self._get_amplitude(1)
 
 
 class StokesVector(PolarizationEllipse):
