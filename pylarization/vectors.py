@@ -14,7 +14,7 @@ class JonesVector(PolarizationEllipse):
         self._vector = np.matrix([[Ex], [Ey]], dtype=complex)
         self._x_phase = np.angle(Ex)
         self._y_phase = np.angle(Ey)
-        self.simplify()
+        self._simplify()
         super().__init__(self.E0x, self.E0y, self.phase)
 
     @property
@@ -45,7 +45,7 @@ class JonesVector(PolarizationEllipse):
         a = self._vector[1] / asqrt
         return np.angle(a)
 
-    def simplify(self):
+    def _simplify(self):
         """
         Method for transforming Jones vector to its simplified version.
         Simplification is required to calculate phase.
