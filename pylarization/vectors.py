@@ -39,11 +39,7 @@ class JonesVector(PolarizationEllipse):
         """
         Return the phase difference of light amplitudes.
         """
-        asqrt = np.sqrt(self._vector[1] * np.conj(self._vector[1]))
-        if asqrt == 0.0:
-            asqrt = 1
-        a = self._vector[1] / asqrt
-        return np.angle(a)
+        return np.angle(self._vector[1]).item()
 
     def _simplify(self):
         """
