@@ -20,11 +20,58 @@ class JonesVector(PolarizationEllipse):
         """
         return self._vector[0].item(), self._vector[1].item()
 
+    @property
+    def phase(self):
+        """
+        Return the phase difference of light amplitudes.
+        """
+        asqrt = np.sqrt(self._vector[1] * np.conj(self._vector[1]))
+        if asqrt == 0.0:
+            asqrt = 1
+        a = self._vector[1] / asqrt
+        return np.angle(a)
+
     def simplify(self):
-        pass
+        """
+        Method for transforming Jones vector to its simplified version.
+        Simplification is required to calculate phase.
+        """
+        asqrt = np.sqrt(self._vector[0] * np.conj(self._vector[0]))
+        if asqrt == 0.0:
+            asqrt = 1
+        a = self._vector[0] / asqrt
+        if np.isnan(a) or a == 0.0:
+            a = 1.0
+        np.divide(self._vector, a, out=self._vector)
 
     def normalize(self):
-        pass
+        """
+        Normalizes a vector by dividing each part by common number.
+        After normalization the magnitude should be equal to ~1.
+        """
+        absW2 = np.abs(self._vector[0])**2 + np.abs(self._vector[1])**2
+        if absW2 == 0:
+            absW2 = 1
+        np.divide(self._vector, np.sqrt(absW2), out=self._vector)
+
+    def _get_amplitude(self, index):
+        """
+        Returns the amplitude along specified axis.
+        Amplitudes are always real.
+        """
+        return np.sqrt(
+            self._vector[index] * np.conj(self._vector[index])
+            ).item().real
+
+    @property
+    """Return the value of amplitude along x axis"""
+    def E0x(self):
+        return self._get_amplitude(0)
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return self._get_amplitude(1)
 
 
 class StokesVector(PolarizationEllipse):
