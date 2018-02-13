@@ -12,6 +12,8 @@ class JonesVector(PolarizationEllipse):
     """
     def __init__(self, Ex, Ey):
         self._vector = np.matrix([[Ex], [Ey]], dtype=complex)
+        self.simplify()
+        super().__init__(self.E0x, self.E0y, self.phase)
 
     @property
     def vector(self):
