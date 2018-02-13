@@ -64,8 +64,8 @@ class JonesVector(PolarizationEllipse):
             ).item().real
 
     @property
-    """Return the value of amplitude along x axis"""
     def E0x(self):
+        """Return the value of amplitude along x axis"""
         return self._get_amplitude(0)
 
     @property
