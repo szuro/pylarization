@@ -78,4 +78,47 @@ class StokesVector(PolarizationEllipse):
     """
     Class for describing polarization state using Stokes vector.
     """
-    pass
+    def __init__(self, I, M, C, S):
+        self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
+        super().__init__(self.E0x, self.E0y, self.phase)
+
+    @property
+    def vector(self):
+        """
+        Return full Stokes vector.
+        """
+        return (self._vector[0].item(),
+                self._vector[1].item(),
+                self._vector[2].item(),
+                self._vector[3].item()
+                )
+
+    @property
+    def E0x(self):
+        """Return the value of amplitude along x axis"""
+        return np.sqrt(
+            (self._vector[0] +
+             self._vector[1]) / 2
+            ).item()
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return np.sqrt(
+            (self._vector[0] -
+             self._vector[1]) / 2
+            ).item()
+
+    @property
+    def phase(self):
+        """
+        Return the phase difference of light amplitudes.
+        """
+        return np.arctan2(self._vector[3], self._vector[2]).item()
+
+    def normalize(self):
+        """
+        Normalizes a vector by dividing each part by common number.
+        After normalization the magnitude should be equal to ~1.
+        """
+        np.divide(self._vector, self._vector[0], out=self.vector)
