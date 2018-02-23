@@ -22,7 +22,7 @@ class JonesVector(PolarizationEllipse):
         """
         Return full Jones vector.
         """
-        return self._vector[0].item(), self._vector[1].item()
+        return self._vector
 
     @property
     def E0x(self):
