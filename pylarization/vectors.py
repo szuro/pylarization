@@ -122,3 +122,11 @@ class StokesVector(PolarizationEllipse):
         After normalization the magnitude should be equal to ~1.
         """
         np.divide(self._vector, self._vector[0], out=self.vector)
+
+    def __str__(self):
+        return "I={}, M={}, C={}, S={}".format(
+            self._vector[0].item(),
+            self._vector[1].item(),
+            self._vector[2].item(),
+            self._vector[3].item()
+            )
