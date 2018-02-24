@@ -19,6 +19,10 @@ class JonesMatrix(object):
     def __rmul__(self, jones):
         raise ValueError("Wrong operation order")
 
+    @classmethod
+    def from_list(cls, list_):
+        return cls(list_[0], list_[1], list_[2], list_[3])
+
 
 class MuellerMatrix(object):
     pass
