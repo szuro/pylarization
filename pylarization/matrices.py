@@ -12,8 +12,8 @@ class JonesMatrix(object):
     Class describing a light transforming optical object.
     Used when transforming a Jones vector.
     """
-    def __init__(self, a11, a12, a21, a22):
-        self._matrix = np.matrix([[a11, a12], [a21, a22]], dtype=complex)
+    def __init__(self, matrix_):
+        self._matrix = np.matrix(matrix_, dtype=complex)
 
     def __mul__(self, other):
         if isinstance(other, JonesVector):
@@ -21,26 +21,10 @@ class JonesMatrix(object):
             return JonesVector(product[0].item(), product[1].item())
         elif isinstance(other, JonesMatrix):
             product = self._matrix * other.matrix
-            return JonesMatrix.from_matrix(product)
+            return JonesMatrix(product)
 
     def __rmul__(self, jones):
         raise ValueError("Wrong operation order")
-
-    @classmethod
-    def from_list(cls, list_):
-        """
-        Creates a JonesMatrix from a lingle list.
-        """
-        return cls(list_[0], list_[1], list_[2], list_[3])
-
-    @classmethod
-    def from_matrix(cls, matrix_):
-        """
-        Creates a JonesMatrix from a 2x2 numpy matrix or array.
-        """
-        a11, a12 = matrix_.tolist()[0]
-        a21, a22 = matrix_.tolist()[1]
-        return cls(a11, a12, a21, a22)
 
     @property
     def matrix(self):
