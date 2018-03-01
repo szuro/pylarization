@@ -17,6 +17,13 @@ class JonesVector(PolarizationEllipse):
         self._simplify()
         super().__init__(self.E0x, self.E0y, self.phase)
 
+    @classmethod
+    def from_matrix(cls, matrix_):
+        vector = cls(matrix_.item(0),
+                     matrix_.item(1)
+                     )
+        return vector
+
     @property
     def vector(self):
         """
@@ -82,16 +89,21 @@ class StokesVector(PolarizationEllipse):
         self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
         super().__init__(self.E0x, self.E0y, self.phase)
 
+    @classmethod
+    def from_matrix(cls, matrix_):
+        vector = cls(matrix_.item(0),
+                     matrix_.item(1),
+                     matrix_.item(2),
+                     matrix_.item(3)
+                     )
+        return vector
+
     @property
     def vector(self):
         """
         Return full Stokes vector.
         """
-        return (self._vector[0].item(),
-                self._vector[1].item(),
-                self._vector[2].item(),
-                self._vector[3].item()
-                )
+        return self._vector
 
     @property
     def E0x(self):
