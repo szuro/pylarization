@@ -48,7 +48,32 @@ class JonesMatrix(object):
 
 
 class MuellerMatrix(object):
-    pass
+    """
+    Class describing a light transforming optical object.
+    Used when transforming a Stokes vector.
+    """
+    def __init__(self, matrix_):
+        self._matrix = np.matrix(matrix_, dtype=float)
+
+    def __mul__(self, other):
+        if isinstance(other, StokesVector):
+            product = self._matrix * other.vector
+            return StokesVector(product[0].item(),
+                                product[1].item(),
+                                product[2].item(),
+                                product[3].item()
+                                )
+        elif isinstance(other, MuellerMatrix):
+            product = self._matrix * other.matrix
+            return MuellerMatrix(product)
+
+    def __rmul__(self, jones):
+        raise ValueError("Wrong operation order")
+
+    @property
+    def matrix(self):
+        return self._matrix
+
 
 
 class CoherencyMatrix(object):
