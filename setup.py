@@ -15,7 +15,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='pylarization',
-    version='0.0.2',
+    version='0.0.5',
     description='Package for polarization state calculations',
     long_description=long_description,
     url='https://github.com/szuro/pylarization',
@@ -30,7 +30,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    keywords='polarization ellipse jones stokes',
+    keywords='polarization light ellipse jones stokes mueller coherency',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     install_requires=['numpy'],
 )
