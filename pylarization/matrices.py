@@ -63,4 +63,34 @@ class MuellerMatrix(_Matrix):
 
 
 class CoherencyMatrix(object):
-    pass
+    """
+    Coherency matrix class.
+    """
+    def __init__(self, Ixx, Ixy, Iyx, Iyy):
+        self._matrix = np.matrix([[Ixx, Ixy], [Iyx, Iyy]], dtype=complex)
+
+    @property
+    def E0x(self):
+        """Return the value of amplitude along x axis"""
+        return np.sqrt(self._matrix.item(0)).real
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return np.sqrt(self._matrix.item(3)).real
+
+    @property
+    def phase(self):
+        """
+        Return the phase difference of light amplitudes.
+        """
+        return np.angle(self._matrix.item(1))
+
+    @classmethod
+    def from_matrix(cls, matrix_):
+        matrix = cls(matrix_.item(0),
+                     matrix_.item(1),
+                     matrix_.item(2),
+                     matrix_.item(3)
+                     )
+        return matrix
