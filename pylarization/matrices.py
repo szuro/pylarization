@@ -5,6 +5,7 @@ It also contains the coherency matrix, which is used to describe polarization.
 """
 import numpy as np
 from pylarization.vectors import JonesVector, StokesVector
+from pylarization.ellipse import PolarizationEllipse
 
 
 class _Matrix(object):
@@ -62,5 +63,40 @@ class MuellerMatrix(_Matrix):
         self._matrix = np.matrix(matrix_, dtype=float)
 
 
-class CoherencyMatrix(object):
-    pass
+class CoherencyMatrix(PolarizationEllipse):
+    """
+    Coherency matrix class.
+    """
+    def __init__(self, Ixx, Ixy, Iyx, Iyy):
+        self._matrix = np.matrix([[Ixx, Ixy], [Iyx, Iyy]], dtype=complex)
+        super().__init__(self.E0x, self.E0y, self.phase)
+
+    @property
+    def E0x(self):
+        """Return the value of amplitude along x axis"""
+        return np.sqrt(self._matrix.item(0)).real
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return np.sqrt(self._matrix.item(3)).real
+
+    @property
+    def phase(self):
+        """
+        Return the phase difference of light amplitudes.
+        """
+        return np.angle(self._matrix.item(1))
+
+    @classmethod
+    def from_matrix(cls, matrix_):
+        matrix = cls(matrix_.item(0),
+                     matrix_.item(1),
+                     matrix_.item(2),
+                     matrix_.item(3)
+                     )
+        return matrix
+
+    @property
+    def matrix(self):
+        return self._matrix
