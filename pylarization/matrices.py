@@ -96,3 +96,7 @@ class CoherencyMatrix(PolarizationEllipse):
                      matrix_.item(3)
                      )
         return matrix
+
+    @property
+    def matrix(self):
+        return self._matrix
