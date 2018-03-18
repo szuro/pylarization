@@ -40,6 +40,11 @@ class JonesMatrix(_Matrix):
     """
     Class describing a light transforming optical object.
     Used when transforming a Jones vector.
+
+    Parameters
+    ----------
+    :matrix_:
+        2 x 2 matrix representing an optical element.
     """
 
     _required_shape = (2, 2)
@@ -54,6 +59,11 @@ class MuellerMatrix(_Matrix):
     """
     Class describing a light transforming optical object.
     Used when transforming a Stokes vector.
+
+    Parameters
+    ----------
+    :matrix_:
+        4 x 4 matrix representing an optical element.
     """
 
     _required_shape = (4, 4)
@@ -71,13 +81,17 @@ class CoherencyMatrix(PolarizationEllipse):
     Parameters
     ----------
     :Ixx:
-        E_x * np.conj(E_x)
+        Product of electric field vector component along the X axis
+        and it's conjugated number.
     :Ixy:
-        E_x * np.conj(E_y)
+        Product of electric field vector component along the X axis
+        and conjugated number of the component along the Y axis.
     :Iyx:
-        E_y * np.conj(E_x)
+        Product of electric field vector component along the Y axis
+        and conjugated number of the component along the X axis.
     :Iyy:
-        E_y * np.conj(E_y)
+        Product of electric field vector component along the Y axis
+        and it's conjugated number.
 
     Attributes
     ----------
