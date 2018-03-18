@@ -47,7 +47,7 @@ class PolarizationEllipse(object):
         -diagonal angle <= azimuth <= diagonal angle
         """
         numerator = 2 * self.E0x * self.E0y * np.cos(self.phase)
-        denominator = self.E0x**2 + self.E0y**2
+        denominator = self.E0x**2 - self.E0y**2
         azimuth = 0.5 * np.arctan2(numerator, denominator)
         return azimuth
 
@@ -58,9 +58,9 @@ class PolarizationEllipse(object):
         Values should be in range:
         -pi/4 <= ellipticity angle <= pi/4
         """
-        ellipticity_angle = 0.5 * np.arcsin(
-            np.tan(2 * self.diagonal_angle) * np.sin(self._phase)
-            )
+        numerator = 2 * self.E0x * self.E0y * np.sin(self.phase)
+        denominator = self.E0x**2 + self.E0y**2
+        ellipticity_angle = 0.5 * np.arcsin(numerator / denominator)
         return ellipticity_angle
 
     @property
@@ -97,36 +97,6 @@ class PolarizationEllipse(object):
         minor_axis = E0 * np.sqrt(1 - sqrt_in_numerator) * np.sqrt(0.5)
         major_axis = E0 * np.sqrt(1 + sqrt_in_numerator) * np.sqrt(0.5)
         return major_axis, minor_axis
-
-    def _calc_diagonal_angle_from_azimuth(self):
-        """
-        Calculate the diagtonal angle of polarization ellipse using azumuth
-        and phase diference.
-        """
-        diagonal_angle = 0.5 * np.arctan(
-            np.tan(2 * self.azimuth) / np.cos(self._phase)
-            )
-        return diagonal_angle
-
-    def _calc_diagonal_angle_from_ellipticity_angle(self):
-        """
-        Calculate the diagtonal angle of polarization ellipse using
-        ellipticity angle and phase diference.
-        """
-        diagonal_angle = 0.5 * np.arcsin(
-            np.sin(2 * self.ellipticity_angle) / np.sin(self._phase)
-            )
-        return diagonal_angle
-
-    def _calc_phase(self):
-        """
-        Calculate the phase difference.
-        """
-        phase = np.arctan(
-            np.tan(2 * self.ellipticity_angle) /
-            np.sin(2 * self.azimuth)
-            )
-        return phase
 
     def __str__(self):
         return "E0x={}, E0y={}, phase={}".format(
