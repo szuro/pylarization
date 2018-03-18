@@ -9,6 +9,22 @@ from pylarization.ellipse import PolarizationEllipse
 class JonesVector(PolarizationEllipse):
     """
     Class for describing polarization state using Jones vector.
+
+    Parameters
+    ----------
+    :Ex:
+        Scalar component of electric field vector along the X axis.
+    :Ey:
+        Scalar component of electric field vector along the Y axis.
+
+    Attributes
+    ----------
+    :_vector:
+        Full Jones Vector.
+    :_x_phase:
+        Absolute phase of the Ex component.
+    :_y_phase:
+        Absolute phase of the Ey component.
     """
     def __init__(self, Ex, Ey):
         self._vector = np.matrix([[Ex], [Ey]], dtype=complex)
@@ -33,18 +49,55 @@ class JonesVector(PolarizationEllipse):
 
     @property
     def E0x(self):
-        """Return the value of amplitude along x axis"""
+        """
+        Amplitude along the X axis.
+
+        Returns
+        -------
+        float
+            Amplitude.
+
+        Examples
+        --------
+            >>> light = JonesVector(0.445, 0.89j)
+            >>> round(light.E0x, 2)
+            0.45
+        """
         return self._get_amplitude(0)
 
     @property
     def E0y(self):
-        """Return the value of amplitude along y axis"""
+        """
+        Amplitude along the Y axis.
+
+        Returns
+        -------
+        float
+            Amplitude.
+
+        Examples
+        --------
+            >>> light = JonesVector(0.445, 0.89j)
+            >>> round(light.E0y, 2)
+            0.89
+        """
         return self._get_amplitude(1)
 
     @property
     def phase(self):
         """
-        Return the phase difference of light amplitudes.
+        Phase difference of light amplitudes.
+
+        Returns
+        -------
+        float
+            Phase difference.
+
+        Examples
+        --------
+            >>> light = JonesVector(0.445, 0.89j)
+            >>> round(light.phase, 2)
+            1.57
         """
         return np.angle(self._vector[1]).item()
 
@@ -84,6 +137,25 @@ class JonesVector(PolarizationEllipse):
 class StokesVector(PolarizationEllipse):
     """
     Class for describing polarization state using Stokes vector.
+
+    Parameters
+    ----------
+    :I:
+        Intensity of the light beam. Sometimes described as S_0.
+    :M:
+        Similarity of a beam to a light to a linearly polarized beam
+        oriented horizontally. Sometimes described as S_1 or Q.
+    :C:
+        Similarity to a right-hand polarized beam.
+        Sometimes described as S_2 or U.
+    :S:
+        Describes the circularity of polarization.
+        Sometimes described as S_3 or V.
+
+    Attributes
+    ----------
+    :_vector:
+        Full Stokes Vector.
     """
     def __init__(self, I, M, C, S):
         self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
@@ -107,7 +179,24 @@ class StokesVector(PolarizationEllipse):
 
     @property
     def E0x(self):
-        """Return the value of amplitude along x axis"""
+        """
+        Amplitude along the X axis.
+
+        Returns
+        -------
+        float
+            Amplitude.
+
+        Examples
+        --------
+            >>> light = StokesVector(1, 1, 0, 0)
+            >>> round(light.E0x, 2)
+            1.0
+
+            >>> light = StokesVector(1, -1, 0, 0)
+            >>> round(light.E0x, 2)
+            0.0
+        """
         return np.sqrt(
             (self._vector[0] +
              self._vector[1]) / 2
@@ -115,7 +204,24 @@ class StokesVector(PolarizationEllipse):
 
     @property
     def E0y(self):
-        """Return the value of amplitude along y axis"""
+        """
+        Amplitude along the Y axis.
+
+        Returns
+        -------
+        float
+            Amplitude.
+
+        Examples
+        --------
+            >>> light = StokesVector(1, 1, 0, 0)
+            >>> round(light.E0y, 2)
+            0.0
+
+            >>> light = StokesVector(1, -1, 0, 0)
+            >>> round(light.E0y, 2)
+            1.0
+        """
         return np.sqrt(
             (self._vector[0] -
              self._vector[1]) / 2
@@ -124,7 +230,18 @@ class StokesVector(PolarizationEllipse):
     @property
     def phase(self):
         """
-        Return the phase difference of light amplitudes.
+        Phase difference of light amplitudes.
+
+        Returns
+        -------
+        float
+            Phase difference.
+
+        Examples
+        --------
+            >>> light = StokesVector(1, 0.6, 0, 0.8)
+            >>> round(light.phase, 2)
+            1.57
         """
         return np.arctan2(self._vector[3], self._vector[2]).item()
 
