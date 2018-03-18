@@ -23,11 +23,14 @@ class PolarizationEllipse(object):
         self._phase = phase
 
     @property
-    def amplitudes(self):
-        """
-        Return the amplitudes of the ellipse.
-        """
-        return self._amplitudes[0].item(), self._amplitudes[1].item()
+    def E0x(self):
+        """Return the value of amplitude along x axis"""
+        return self._amplitudes[0].item()
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return self._amplitudes[1].item()
 
     @property
     def phase(self):
@@ -43,9 +46,9 @@ class PolarizationEllipse(object):
         Values should be in range:
         -diagonal angle <= azimuth <= diagonal angle
         """
-        azimuth = 0.5 * np.arctan(
-            np.tan(2 * self.diagonal_angle) * np.cos(self._phase)
-            )
+        numerator = 2 * self.E0x * self.E0y * np.cos(self.phase)
+        denominator = self.E0x**2 + self.E0y**2
+        azimuth = 0.5 * np.arctan2(numerator, denominator)
         return azimuth
 
     @property
