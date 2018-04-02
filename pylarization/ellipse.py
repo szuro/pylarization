@@ -53,7 +53,7 @@ class PolarizationEllipse(object):
         Examples
         --------
             >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.azimuth, 2)
+            >>> round(light.phase, 2)
             1.57
         """
         return self._phase
@@ -75,8 +75,14 @@ class PolarizationEllipse(object):
         Examples
         --------
             >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.azimuth, 2) == 0.0
-            True
+            >>> round(light.azimuth, 2)
+            0.0
+            >>> light = PolarizationEllipse(1, 0, 0)
+            >>> round(light.azimuth, 2)
+            0.0
+            >>> light = PolarizationEllipse(0, 1, 0)
+            >>> round(light.azimuth, 2)
+            1.57
         """
         numerator = 2 * self.E0x * self.E0y * np.cos(self.phase)
         denominator = self.E0x**2 - self.E0y**2
@@ -126,7 +132,7 @@ class PolarizationEllipse(object):
         --------
             >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
             >>> round(light.diagonal_angle, 2)
-            1.06
+            1.11
         """
         diagonal_angle = np.arctan2(
             self._amplitudes[1].item(),
@@ -152,7 +158,7 @@ class PolarizationEllipse(object):
         --------
             >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
             >>> round(light.complement_diagonal_angle, 2)
-            0.51
+            0.46
         """
         return np.pi / 2 - self.diagonal_angle
 
