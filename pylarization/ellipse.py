@@ -43,8 +43,10 @@ class PolarizationEllipse(object):
         Values should be in range:
         -diagonal angle <= azimuth <= diagonal angle
         """
+        tan_2_diagonal_angle = self._calc_tan_2_diagonal_angle()
+        cos_phase = np.cos(self._phase)
         azimuth = 0.5 * np.arctan(
-            np.tan(2 * self.diagonal_angle) * np.cos(self._phase)
+            tan_2_diagonal_angle * cos_phase
             )
         return azimuth
 
@@ -55,8 +57,10 @@ class PolarizationEllipse(object):
         Values should be in range:
         -pi/4 <= ellipticity angle <= pi/4
         """
+        tan_2_diagonal_angle = self._calc_tan_2_diagonal_angle()
+        sin_phase = np.sin(self._phase)
         ellipticity_angle = 0.5 * np.arcsin(
-            np.tan(2 * self.diagonal_angle) * np.sin(self._phase)
+            tan_2_diagonal_angle * sin_phase
             )
         return ellipticity_angle
 
@@ -124,6 +128,10 @@ class PolarizationEllipse(object):
             np.sin(2 * self.azimuth)
             )
         return phase
+
+    def _calc_tan_2_diagonal_angle(self):
+        value = np.tan(2 * self.diagonal_angle)
+        return value
 
     def __str__(self):
         return "E0x={}, E0y={}, phase={}".format(
