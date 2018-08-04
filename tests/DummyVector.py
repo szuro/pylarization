@@ -35,6 +35,8 @@ class DummyVectorValues(unittest.TestCase):
         self.assertAlmostEqual(self.linear_plus45.azimuth, pi/4)
         self.assertAlmostEqual(self.linear_minus45.azimuth, -pi/4)
         self.assertAlmostEqual(self.elliptic.azimuth, 0.0)
+        self.assertIsNone(self.circular_left_handed)
+        self.assertIsNone(self.circular_right_handed)
 
     def test_phase(self):
         self.assertAlmostEqual(self.linear_horizontal.phase, 0.0)
