@@ -12,6 +12,8 @@ class StokesVectorValues(DummyVector.DummyVectorValues):
         self.linear_plus45 = StokesVector(1, 0, 1, 0)
         self.linear_minus45 = StokesVector(1, 0, -1, 0)
         self.elliptic = StokesVector(1.2371, -0.3471, 0, 0.7921)
+        self.circular_left_handed = StokesVector(1, 0, 0, -1)
+        self.circular_right_handed = StokesVector(1, 0, 0, 1)
 
 
 class StokesVectorNormalization(DummyVector.DummyVectorNormalization):
@@ -21,6 +23,8 @@ class StokesVectorNormalization(DummyVector.DummyVectorNormalization):
         self.linear_plus45 = StokesVector(1, 0, 1, 0)
         self.linear_minus45 = StokesVector(1, 0, -1, 0)
         self.elliptic = StokesVector(1.2371, -0.3471, 0, 0.7921)
+        self.circular_left_handed = StokesVector(1, 0, 0, -1)
+        self.circular_right_handed = StokesVector(1, 0, 0, 1)
 
         self.linear_horizontal_normalized = StokesVector(1, 1, 0, 0)
         self.linear_horizontal_normalized.normalize()
@@ -36,6 +40,12 @@ class StokesVectorNormalization(DummyVector.DummyVectorNormalization):
 
         self.elliptic_normalized = StokesVector(1.2371, -0.3471, 0, 0.7921)
         self.elliptic_normalized.normalize()
+
+        self.circular_left_handed_normalized = StokesVector(1, 0, 0, -1)
+        self.circular_left_handed_normalized.normalize()
+
+        self.circular_right_handed_normalized = StokesVector(1, 0, 0, 1)
+        self.circular_right_handed_normalized.normalize()
 
 
 if __name__ == '__main__':

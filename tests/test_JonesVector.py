@@ -13,6 +13,8 @@ class JonesVectorValues(DummyVector.DummyVectorValues):
         self.linear_plus45 = JonesVector(a, a)
         self.linear_minus45 = JonesVector(a, -a)
         self.elliptic = JonesVector(0.89 * 0.5, 0.89 * 1j)
+        self.circular_left_handed = JonesVector(a, -a * 1j)
+        self.circular_right_handed = JonesVector(a, a * 1j)
 
 
 class JonesVectorNormalization(DummyVector.DummyVectorNormalization):
@@ -23,6 +25,8 @@ class JonesVectorNormalization(DummyVector.DummyVectorNormalization):
         self.linear_plus45 = JonesVector(a, a)
         self.linear_minus45 = JonesVector(a, -a)
         self.elliptic = JonesVector(0.89 * 0.5, 0.89 * 1j)
+        self.circular_left_handed = JonesVector(a, -a * 1j)
+        self.circular_right_handed = JonesVector(a, a * 1j)
 
         self.linear_horizontal_normalized = JonesVector(1, 0)
         self.linear_horizontal_normalized.normalize()
@@ -38,6 +42,12 @@ class JonesVectorNormalization(DummyVector.DummyVectorNormalization):
 
         self.elliptic_normalized = JonesVector(0.89 * 0.5, 0.89 * 1j)
         self.elliptic_normalized.normalize()
+
+        self.circular_left_handed_normalized = JonesVector(a, -a * 1j)
+        self.circular_left_handed_normalized.normalize()
+
+        self.circular_right_handed_normalized = JonesVector(a, a * 1j)
+        self.circular_right_handed_normalized.normalize()
 
 
 if __name__ == '__main__':
