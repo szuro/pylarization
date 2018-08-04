@@ -55,3 +55,88 @@ class DummyVectorValues(unittest.TestCase):
         self.assertAlmostEqual(self.linear_vertical.diagonal_angle, pi/2)
         self.assertAlmostEqual(self.linear_plus45.diagonal_angle, pi/4)
         self.assertAlmostEqual(self.linear_minus45.diagonal_angle, -pi/4)
+
+
+class DummyVectorNormalization(unittest.TestCase):
+    def setUp(self):
+        self.linear_horizontal = DummyVector()
+        self.linear_vertical = DummyVector(azimuth=pi/2)
+        self.linear_plus45 = DummyVector(azimuth=pi/4)
+        self.linear_minus45 = DummyVector(azimuth=-pi/4)
+        self.elliptic = DummyVector(ellipticity_angle=0.46373398,
+                                    phase=1.57079632)
+        self.circular_left_handed = DummyVector(phase=pi/2)
+        self.circular_right_handed = DummyVector(phase=-pi/2)
+
+        self.linear_horizontal_normalized = DummyVector()
+        self.linear_vertical_normalized = DummyVector(azimuth=pi/2)
+        self.linear_plus45_normalized = DummyVector(azimuth=pi/4)
+        self.linear_minus45_normalized = DummyVector(azimuth=-pi/4)
+        self.elliptic_normalized = DummyVector(ellipticity_angle=0.46373398,
+                                               phase=1.57079632)
+        self.circular_left_handed_normalized = DummyVector(phase=pi/2)
+        self.circular_right_handed_normalized = DummyVector(phase=-pi/2)
+
+    def test_normalized_azimuth(self):
+        self.assertAlmostEqual(self.linear_horizontal.azimuth,
+                               self.linear_horizontal_normalized.azimuth)
+        self.assertAlmostEqual(self.linear_vertical.azimuth,
+                               self.linear_vertical.azimuth)
+        self.assertAlmostEqual(self.linear_plus45.azimuth,
+                               self.linear_plus45_normalized.azimuth)
+        self.assertAlmostEqual(self.linear_minus45.azimuth,
+                               self.linear_minus45_normalized.azimuth)
+        self.assertAlmostEqual(self.elliptic.azimuth,
+                               self.elliptic_normalized.azimuth)
+        self.assertAlmostEqual(self.circular_left_handed.azimuth,
+                               self.circular_left_handed_normalized.azimuth)
+        self.assertAlmostEqual(self.circular_right_handed.azimuth,
+                               self.circular_right_handed_normalized.azimuth)
+
+    def test_normalized_phase(self):
+        self.assertAlmostEqual(self.linear_horizontal.phase,
+                               self.linear_horizontal_normalized.phase)
+        self.assertAlmostEqual(self.linear_vertical.phase,
+                               self.linear_vertical.phase)
+        self.assertAlmostEqual(self.linear_plus45.phase,
+                               self.linear_plus45_normalized.phase)
+        self.assertAlmostEqual(self.linear_minus45.phase,
+                               self.linear_minus45_normalized.phase)
+        self.assertAlmostEqual(self.elliptic.phase,
+                               self.elliptic_normalized.phase)
+        self.assertAlmostEqual(self.circular_left_handed.phase,
+                               self.circular_left_handed_normalized.phase)
+        self.assertAlmostEqual(self.circular_right_handed.phase,
+                               self.circular_right_handed_normalized.phase)
+
+    def test_normalized_ellipticity_angle(self):
+        self.assertAlmostEqual(self.linear_horizontal.ellipticity_angle,
+                               self.linear_horizontal_normalized.ellipticity_angle)
+        self.assertAlmostEqual(self.linear_vertical.ellipticity_angle,
+                               self.linear_vertical.ellipticity_angle)
+        self.assertAlmostEqual(self.linear_plus45.ellipticity_angle,
+                               self.linear_plus45_normalized.ellipticity_angle)
+        self.assertAlmostEqual(self.linear_minus45.ellipticity_angle,
+                               self.linear_minus45_normalized.ellipticity_angle)
+        self.assertAlmostEqual(self.elliptic.ellipticity_angle,
+                               self.elliptic_normalized.ellipticity_angle)
+        self.assertAlmostEqual(self.circular_left_handed.ellipticity_angle,
+                               self.circular_left_handed_normalized.ellipticity_angle)
+        self.assertAlmostEqual(self.circular_right_handed.ellipticity_angle,
+                               self.circular_right_handed_normalized.ellipticity_angle)
+
+    def test_normalized_diagonal_angle(self):
+        self.assertAlmostEqual(self.linear_horizontal.diagonal_angle,
+                               self.linear_horizontal_normalized.diagonal_angle)
+        self.assertAlmostEqual(self.linear_vertical.diagonal_angle,
+                               self.linear_vertical.diagonal_angle)
+        self.assertAlmostEqual(self.linear_plus45.diagonal_angle,
+                               self.linear_plus45_normalized.diagonal_angle)
+        self.assertAlmostEqual(self.linear_minus45.diagonal_angle,
+                               self.linear_minus45_normalized.diagonal_angle)
+        self.assertAlmostEqual(self.elliptic.diagonal_angle,
+                               self.elliptic_normalized.diagonal_angle)
+        self.assertAlmostEqual(self.circular_left_handed.diagonal_angle,
+                               self.circular_left_handed_normalized.diagonal_angle)
+        self.assertAlmostEqual(self.circular_right_handed.diagonal_angle,
+                               self.circular_right_handed_normalized.diagonal_angle)
