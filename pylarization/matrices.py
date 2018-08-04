@@ -11,6 +11,7 @@ from pylarization.ellipse import PolarizationEllipse
 class _Matrix(object):
     """
     Abstract matrix class.
+    Not to be used directly.
     """
 
     _vector_class = None
@@ -39,6 +40,11 @@ class JonesMatrix(_Matrix):
     """
     Class describing a light transforming optical object.
     Used when transforming a Jones vector.
+
+    Parameters
+    ----------
+    :matrix_:
+        2 x 2 matrix representing an optical element.
     """
 
     _required_shape = (2, 2)
@@ -53,6 +59,11 @@ class MuellerMatrix(_Matrix):
     """
     Class describing a light transforming optical object.
     Used when transforming a Stokes vector.
+
+    Parameters
+    ----------
+    :matrix_:
+        4 x 4 matrix representing an optical element.
     """
 
     _required_shape = (4, 4)
@@ -66,6 +77,26 @@ class MuellerMatrix(_Matrix):
 class CoherencyMatrix(PolarizationEllipse):
     """
     Coherency matrix class.
+
+    Parameters
+    ----------
+    :Ixx:
+        Product of electric field vector component along the X axis
+        and it's conjugated number.
+    :Ixy:
+        Product of electric field vector component along the X axis
+        and conjugated number of the component along the Y axis.
+    :Iyx:
+        Product of electric field vector component along the Y axis
+        and conjugated number of the component along the X axis.
+    :Iyy:
+        Product of electric field vector component along the Y axis
+        and it's conjugated number.
+
+    Attributes
+    ----------
+    :_matrix:
+        Full Coherency Matrix
     """
     def __init__(self, Ixx, Ixy, Iyx, Iyy):
         self._matrix = np.matrix([[Ixx, Ixy], [Iyx, Iyy]], dtype=complex)
@@ -73,18 +104,56 @@ class CoherencyMatrix(PolarizationEllipse):
 
     @property
     def E0x(self):
-        """Return the value of amplitude along x axis"""
+        """
+        Amplitude along the X axis.
+
+        Returns
+        -------
+        float
+            Amplitude.
+
+        Examples
+        --------
+            >>> light = CoherencyMatrix(0.198, 0.396j, -0.396j, 0.792)
+            >>> round(light.E0x, 2)
+            0.44
+
+        """
         return np.sqrt(self._matrix.item(0)).real
 
     @property
     def E0y(self):
-        """Return the value of amplitude along y axis"""
+        """
+        Amplitude along the Y axis.
+
+        Returns
+        -------
+        float
+            Amplitude.
+
+        Examples
+        --------
+            >>> light = CoherencyMatrix(0.198, 0.396j, -0.396j, 0.792)
+            >>> round(light.E0y, 2)
+            0.89
+        """
         return np.sqrt(self._matrix.item(3)).real
 
     @property
     def phase(self):
         """
-        Return the phase difference of light amplitudes.
+        Phase difference of light amplitudes.
+
+        Returns
+        -------
+        float
+            Phase difference.
+
+        Examples
+        --------
+            >>> light = CoherencyMatrix(0.198, 0.396j, -0.396j, 0.792)
+            >>> round(light.phase, 2)
+            1.57
         """
         return np.angle(self._matrix.item(1))
 

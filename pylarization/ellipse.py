@@ -7,69 +7,132 @@ import numpy as np
 class PolarizationEllipse(object):
     """
     Class for describing polarization state using trygonometry.
-    amplitudes - float matrix holding values of x and y amplitudes of
+
+    Parameters
+    ----------
+    :E0x:
+        Amplitude of the electric field vector along the X axis.
+    :E0y:
+        Amplitude of the electric field vector along the Y axis.
+    :phase:
+        Phase difference between E0x and E0y.
+
+    Attributes
+    ----------
+    :_amplitudes:
+        Float matrix holding values of x and y amplitudes of
         electric field vector.
-    ellipticity_angle - assuming A is equal to half of the major axis and
-        B is equal to half of the minor axis then the tangent of
-        ellipticity_angle is equal to B/A. After removing denominators
-        it's obvious that it's just a ratio of the two axes.
-    azimuth - angle between the major axis of the ellipse and the x-axis.
-    phase - the phase difference between x and y components.
-    diagonal_angle - ratio between amplitudes of light.
-    complement_diagonal_angle - the complement of the diagonal angle.
+    :_phase:
+        The phase difference between x and y components.
     """
+
     def __init__(self, E0x, E0y, phase):
         self._amplitudes = np.matrix([[E0x], [E0y]], dtype=float)
         self._phase = phase
 
     @property
-    def amplitudes(self):
-        """
-        Return the amplitudes of the ellipse.
-        """
-        return self._amplitudes[0].item(), self._amplitudes[1].item()
+    def E0x(self):
+        """Return the value of amplitude along x axis"""
+        return self._amplitudes[0].item()
+
+    @property
+    def E0y(self):
+        """Return the value of amplitude along y axis"""
+        return self._amplitudes[1].item()
 
     @property
     def phase(self):
         """
         Return the phase difference of light amplitudes.
+
+        Returns
+        -------
+        float
+            Phase in radians.
+
+        Examples
+        --------
+            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
+            >>> round(light.phase, 2)
+            1.57
         """
         return self._phase
 
     @property
     def azimuth(self):
         """
-        Return the azimuth property of light polarization.
-        Values should be in range:
-        -diagonal angle <= azimuth <= diagonal angle
+        Azimuth (orientation angle) of polarized light.
+
+        Returns
+        -------
+        float
+            Azimuth value in radians.
+
+            Expected values are in the range of:
+
+            -diagonal_angle <= azimuth <= diagonal_angle
+
+        Examples
+        --------
+            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
+            >>> round(light.azimuth, 2)
+            0.0
+            >>> light = PolarizationEllipse(1, 0, 0)
+            >>> round(light.azimuth, 2)
+            0.0
+            >>> light = PolarizationEllipse(0, 1, 0)
+            >>> round(light.azimuth, 2)
+            1.57
         """
-        tan_2_diagonal_angle = self._calc_tan_2_diagonal_angle()
-        cos_phase = np.cos(self._phase)
-        azimuth = 0.5 * np.arctan(
-            tan_2_diagonal_angle * cos_phase
-            )
+        numerator = 2 * self.E0x * self.E0y * np.cos(self.phase)
+        denominator = self.E0x**2 - self.E0y**2
+        azimuth = 0.5 * np.arctan2(numerator, denominator)
         return azimuth
 
     @property
     def ellipticity_angle(self, degrees=False):
         """
-        Return the ratio of minor to major ellipse axis.
-        Values should be in range:
-        -pi/4 <= ellipticity angle <= pi/4
+        Ellipticity angle of polarized light.
+
+        Returns
+        -------
+        float
+            Ellipticity angle in radians.
+
+            Expected values are in the range of:
+
+            -pi/4 <= ellipticity_angle <= pi/4
+
+        Examples
+        --------
+            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
+            >>> round(light.ellipticity_angle, 2)
+            0.46
         """
-        tan_2_diagonal_angle = self._calc_tan_2_diagonal_angle()
-        sin_phase = np.sin(self._phase)
-        ellipticity_angle = 0.5 * np.arcsin(
-            tan_2_diagonal_angle * sin_phase
-            )
+        numerator = 2 * self.E0x * self.E0y * np.sin(self.phase)
+        denominator = self.E0x**2 + self.E0y**2
+        ellipticity_angle = 0.5 * np.arcsin(numerator / denominator)
         return ellipticity_angle
 
     @property
     def diagonal_angle(self, degrees=False):
         """
-        Return the diagonal angle of th rectangle created by light amplitudes.
-        Values should be in range:
-        0 <= diagonal angle <= pi/2
+        Diagonal angle of the rectangle created by light amplitudes.
+
+        Returns
+        -------
+        float
+            Diagonal angle in radians.
+
+            Expected values are in the range of:
+
+            0 <= diagonal_angle <= pi/2
+
+        Examples
+        --------
+            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
+            >>> round(light.diagonal_angle, 2)
+            1.11
         """
         diagonal_angle = np.arctan2(
             self._amplitudes[1].item(),
@@ -80,9 +143,22 @@ class PolarizationEllipse(object):
     @property
     def complement_diagonal_angle(self):
         """
-        Calculate the complement of diagonal angle.
-        Values should be in range:
-        0 <= complement of diagonal angle <= pi/2
+        Complement of diagonal angle.
+
+        Returns
+        -------
+        float
+            Complement of the diagonal angle in radians.
+
+            Expected values are in the range of:
+
+            0 <= complement_diagonal_angle <= pi/2
+
+        Examples
+        --------
+            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
+            >>> round(light.complement_diagonal_angle, 2)
+            0.46
         """
         return np.pi / 2 - self.diagonal_angle
 
