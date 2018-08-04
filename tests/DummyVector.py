@@ -1,4 +1,5 @@
 import unittest
+import math
 from math import pi
 
 
@@ -17,7 +18,7 @@ class DummyVector(object):
         self.complement_diagonal_angle = complement_diagonal_angle
 
 
-class Base(unittest.TestCase):
+class DummyVectorValues(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = DummyVector()
         self.linear_vertical = DummyVector(azimuth=pi/2)
@@ -51,6 +52,6 @@ class Base(unittest.TestCase):
 
     def test_diagonal_angle(self):
         self.assertAlmostEqual(self.linear_horizontal.diagonal_angle, 0.0)
-        self.assertAlmostEqual(self.linear_vertical.diagonal_angle, 0.0)
-        self.assertAlmostEqual(self.linear_plus45.diagonal_angle, 0.0)
-        self.assertAlmostEqual(self.linear_minus45.diagonal_angle, 0.0)
+        self.assertAlmostEqual(self.linear_vertical.diagonal_angle, pi/2)
+        self.assertAlmostEqual(self.linear_plus45.diagonal_angle, pi/4)
+        self.assertAlmostEqual(self.linear_minus45.diagonal_angle, -pi/4)

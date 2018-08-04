@@ -1,10 +1,11 @@
 import unittest
 from math import sqrt
+import math
 from pylarization.vectors import StokesVector
 from tests import DummyVector
 
 
-class StokesVectorValues(DummyVector.Base):
+class StokesVectorValues(DummyVector.DummyVectorValues):
     def setUp(self):
         self.linear_horizontal = StokesVector(1, 1, 0, 0)
         self.linear_vertical = StokesVector(1, -1, 0, 0)

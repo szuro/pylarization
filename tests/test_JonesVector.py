@@ -1,10 +1,11 @@
 import unittest
+import math
 from math import sqrt
 from pylarization.vectors import JonesVector
 from tests import DummyVector
 
 
-class TestJonesVector(DummyVector.Base):
+class JonesVectorValues(DummyVector.DummyVectorValues):
     def setUp(self):
         self.linear_horizontal = JonesVector(1, 0)
         self.linear_vertical = JonesVector(0, 1)
