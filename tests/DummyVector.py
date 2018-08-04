@@ -54,7 +54,7 @@ class DummyVectorValues(unittest.TestCase):
         self.assertAlmostEqual(self.linear_horizontal.diagonal_angle, 0.0)
         self.assertAlmostEqual(self.linear_vertical.diagonal_angle, pi/2)
         self.assertAlmostEqual(self.linear_plus45.diagonal_angle, pi/4)
-        self.assertAlmostEqual(self.linear_minus45.diagonal_angle, -pi/4)
+        self.assertAlmostEqual(self.linear_minus45.diagonal_angle, pi/4)
 
 
 class DummyVectorNormalization(unittest.TestCase):
