@@ -177,7 +177,7 @@ class PolarizationEllipse(object):
 
     def __str__(self):
         return "E0x={}, E0y={}, phase={}".format(
-            self._amplitudes[0].item(),
-            self._amplitudes[0].item(),
-            self._phase
+            self.E0x,
+            self.E0y,
+            self.phase
             )
