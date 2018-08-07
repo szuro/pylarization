@@ -135,10 +135,10 @@ class PolarizationEllipse(object):
             1.11
         """
         diagonal_angle = np.arctan2(
-            self._amplitudes[1].item(),
-            self._amplitudes[0].item()
+            self.E0y, 
+            self.E0x 
             )
-        return diagonal_angle
+        return np.abs(diagonal_angle)
 
     @property
     def complement_diagonal_angle(self):
