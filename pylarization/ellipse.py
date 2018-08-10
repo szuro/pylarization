@@ -135,8 +135,8 @@ class PolarizationEllipse(object):
             1.11
         """
         diagonal_angle = np.arctan2(
-            self.E0y, 
-            self.E0x 
+            self.E0y,
+            self.E0x
             )
         return np.abs(diagonal_angle)
 
