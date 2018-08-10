@@ -86,9 +86,9 @@ class PolarizationEllipse(object):
         """
         cos_phase = np.cos(self.phase)
         try:
-            tanb = self.E0y / self.E0x
-            tan2b = 2 * tanb / (1 - tanb**2)
-            azimuth = 0.5 * np.arctan(tan2b * cos_phase)
+            tan_b = self.E0y / self.E0x
+            tan_2b = 2 * tan_b / (1 - tan_b**2)
+            azimuth = 0.5 * np.arctan(tan_2b * cos_phase)
         except ZeroDivisionError:
             denominator = self.E0x**2 - self.E0y**2
             numerator = 2 * self.E0x * self.E0y * cos_phase
