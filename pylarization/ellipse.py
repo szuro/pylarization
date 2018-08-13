@@ -84,10 +84,17 @@ class PolarizationEllipse(object):
             >>> round(light.azimuth, 2)
             1.57
         """
-        numerator = 2 * self.E0x * self.E0y * np.cos(self.phase)
-        denominator = self.E0x**2 - self.E0y**2
-        azimuth = 0.5 * np.arctan2(numerator, denominator)
-        return azimuth
+        cos_phase = np.cos(self.phase)
+        try:
+            tan_b = self.E0y / self.E0x
+            tan_2b = 2 * tan_b / (1 - tan_b**2)
+            azimuth = 0.5 * np.arctan(tan_2b * cos_phase)
+        except ZeroDivisionError:
+            denominator = self.E0x**2 - self.E0y**2
+            numerator = 2 * self.E0x * self.E0y * cos_phase
+            azimuth = 0.5 * np.arctan2(numerator, denominator)
+        finally:
+            return azimuth
 
     @property
     def ellipticity_angle(self, degrees=False):
@@ -135,10 +142,10 @@ class PolarizationEllipse(object):
             1.11
         """
         diagonal_angle = np.arctan2(
-            self._amplitudes[1].item(),
-            self._amplitudes[0].item()
+            self.E0y,
+            self.E0x
             )
-        return diagonal_angle
+        return np.abs(diagonal_angle)
 
     @property
     def complement_diagonal_angle(self):
@@ -175,43 +182,9 @@ class PolarizationEllipse(object):
         major_axis = E0 * np.sqrt(1 + sqrt_in_numerator) * np.sqrt(0.5)
         return major_axis, minor_axis
 
-    def _calc_diagonal_angle_from_azimuth(self):
-        """
-        Calculate the diagtonal angle of polarization ellipse using azumuth
-        and phase diference.
-        """
-        diagonal_angle = 0.5 * np.arctan(
-            np.tan(2 * self.azimuth) / np.cos(self._phase)
-            )
-        return diagonal_angle
-
-    def _calc_diagonal_angle_from_ellipticity_angle(self):
-        """
-        Calculate the diagtonal angle of polarization ellipse using
-        ellipticity angle and phase diference.
-        """
-        diagonal_angle = 0.5 * np.arcsin(
-            np.sin(2 * self.ellipticity_angle) / np.sin(self._phase)
-            )
-        return diagonal_angle
-
-    def _calc_phase(self):
-        """
-        Calculate the phase difference.
-        """
-        phase = np.arctan(
-            np.tan(2 * self.ellipticity_angle) /
-            np.sin(2 * self.azimuth)
-            )
-        return phase
-
-    def _calc_tan_2_diagonal_angle(self):
-        value = np.tan(2 * self.diagonal_angle)
-        return value
-
     def __str__(self):
         return "E0x={}, E0y={}, phase={}".format(
-            self._amplitudes[0].item(),
-            self._amplitudes[0].item(),
-            self._phase
+            self.E0x,
+            self.E0y,
+            self.phase
             )
