@@ -45,7 +45,7 @@ class DummyVectorValues(unittest.TestCase):
         self.assertAlmostEqual(self.linear_vertical.ellipticity_angle, 0.0)
         self.assertAlmostEqual(self.linear_plus45.ellipticity_angle, 0.0)
         self.assertAlmostEqual(self.linear_minus45.ellipticity_angle, 0.0)
-        self.assertAlmostEqual(self.elliptic.ellipticity_angle, 0.46373398)
+        self.assertAlmostEqual(self.elliptic.ellipticity_angle, 0.463647609)
         self.assertAlmostEqual(self.circular_left_handed.ellipticity_angle, -pi/4)
         self.assertAlmostEqual(self.circular_right_handed.ellipticity_angle, pi/4)
 
