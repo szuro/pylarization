@@ -10,7 +10,7 @@ class PolarizationEllipseValues(DummyVector.DummyVectorValues):
         self.linear_horizontal = PolarizationEllipse(1.0, 0.0, 0.0)
         self.linear_vertical = PolarizationEllipse(0.0, 1.0, 0.0)
         self.linear_plus45 = PolarizationEllipse(0.7071068, 0.7071068, 0.0)
-        self.linear_minus45 = PolarizationEllipse(0.7071068, -0.7071068, 0.0)
+        self.linear_minus45 = PolarizationEllipse(0.7071068, -0.7071068, pi)
         self.elliptic = PolarizationEllipse(0.445, 0.89, pi/2)
         self.circular_left_handed = PolarizationEllipse(0.7071068, 0.7071068, -pi/2)
         self.circular_right_handed = PolarizationEllipse(0.7071068, 0.7071068, pi/2)
