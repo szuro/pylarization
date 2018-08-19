@@ -1,6 +1,5 @@
 import unittest
-import math
-from math import sqrt
+from numpy import sqrt
 from pylarization.vectors import JonesVector
 from tests import DummyVector
 

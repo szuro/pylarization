@@ -1,6 +1,5 @@
 import unittest
-import math
-from math import pi
+from numpy import pi
 
 
 class DummyVector(object):

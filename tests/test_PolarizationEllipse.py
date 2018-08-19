@@ -1,6 +1,5 @@
 import unittest
-from math import sqrt, pi
-import math
+from numpy import pi
 from pylarization.ellipse import PolarizationEllipse
 from tests import DummyVector
 
