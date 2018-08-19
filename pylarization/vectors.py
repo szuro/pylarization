@@ -106,7 +106,7 @@ class JonesVector(PolarizationEllipse):
         Method for transforming Jones vector to its simplified version.
         Simplification is required to calculate phase.
         """
-        asqrt = np.sqrt(self._vector[0] * np.conj(self._vector[0]))
+        asqrt = np.abs(self._vector[0])
         if asqrt == 0.0:
             asqrt = 1
         a = self._vector[0] / asqrt
@@ -129,8 +129,8 @@ class JonesVector(PolarizationEllipse):
         Returns the amplitude along specified axis.
         Amplitudes are always real.
         """
-        return np.sqrt(
-            self._vector[index] * np.conj(self._vector[index])
+        return np.abs(
+                self._vector[index]
             ).item().real
 
 
