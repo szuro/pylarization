@@ -15,14 +15,14 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='pylarization',
-    version='0.0.7',
+    version='0.1.0',
     description='Package for polarization state calculations',
     long_description=long_description,
     url='https://github.com/szuro/pylarization',
     author='Robert Szulist',
     author_email='r.szulist@gmail.com',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Physics',
         'License :: OSI Approved :: MIT License',
