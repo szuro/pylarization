@@ -60,22 +60,20 @@ class DummyVectorValues(unittest.TestCase):
 class DummyVectorNormalization(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = DummyVector()
-        self.linear_vertical = DummyVector(azimuth=pi/2)
-        self.linear_plus45 = DummyVector(azimuth=pi/4)
-        self.linear_minus45 = DummyVector(azimuth=-pi/4)
-        self.elliptic = DummyVector(ellipticity_angle=0.46373398,
-                                    phase=1.57079632)
-        self.circular_left_handed = DummyVector(phase=pi/2)
-        self.circular_right_handed = DummyVector(phase=-pi/2)
+        self.linear_vertical = DummyVector()
+        self.linear_plus45 = DummyVector()
+        self.linear_minus45 = DummyVector()
+        self.elliptic = DummyVector()
+        self.circular_left_handed = DummyVector()
+        self.circular_right_handed = DummyVector()
 
         self.linear_horizontal_normalized = DummyVector()
-        self.linear_vertical_normalized = DummyVector(azimuth=pi/2)
-        self.linear_plus45_normalized = DummyVector(azimuth=pi/4)
-        self.linear_minus45_normalized = DummyVector(azimuth=-pi/4)
-        self.elliptic_normalized = DummyVector(ellipticity_angle=0.46373398,
-                                               phase=1.57079632)
-        self.circular_left_handed_normalized = DummyVector(phase=pi/2)
-        self.circular_right_handed_normalized = DummyVector(phase=-pi/2)
+        self.linear_vertical_normalized = DummyVector()
+        self.linear_plus45_normalized = DummyVector()
+        self.linear_minus45_normalized = DummyVector()
+        self.elliptic_normalized = DummyVector()
+        self.circular_left_handed_normalized = DummyVector()
+        self.circular_right_handed_normalized = DummyVector()
 
     def test_normalized_azimuth(self):
         self.assertAlmostEqual(
