@@ -35,7 +35,7 @@ class DummyVectorValues(unittest.TestCase):
         self.assertAlmostEqual(self.linear_horizontal.phase, 0.0)
         self.assertAlmostEqual(self.linear_vertical.phase, 0.0)
         self.assertAlmostEqual(self.linear_plus45.phase, 0.0)
-        self.assertAlmostEqual(self.linear_minus45.phase, 0.0)
+        self.assertAlmostEqual(self.linear_minus45.phase, pi)
         self.assertAlmostEqual(self.elliptic.phase, pi/2)
         self.assertAlmostEqual(self.circular_left_handed.phase, -pi/2)
         self.assertAlmostEqual(self.circular_right_handed.phase, pi/2)
