@@ -9,15 +9,16 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(path.join(here, 'README.rst'), 'r', encoding='utf-8') as f:
     long_description = f.read()
 
 
 setup(
     name='pylarization',
-    version='0.1.0',
+    version='0.1.2',
     description='Package for polarization state calculations',
     long_description=long_description,
+    long_description_content_type="text/x-rst",
     url='https://github.com/szuro/pylarization',
     author='Robert Szulist',
     author_email='r.szulist@gmail.com',
