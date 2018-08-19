@@ -1,16 +1,14 @@
-============
 Pylarization
 ============
 
-
 About
-=====
+-----
 Pylarization is a Python module that aids in processing light
 polarization states. For given method of polarization description it can 
 calculate all parameters of a polarization ellipse.
 
 Installation
-============
+------------
 
 The following should do, as pylarization does not have any
 platform-specific dependancies.
@@ -20,10 +18,10 @@ platform-specific dependancies.
    pip install pylarization
 
 Usage
-=====
+-----
 
 Polarization Ellipse
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PolarizationEllipse is the base class for all classes describing different 
 methods of describing the state of polarization.
@@ -37,7 +35,7 @@ the X and Y axes and the phase difference between the amplitudes.
 
 
 Vectors
--------
+~~~~~~~
 
 Jones Vector
 ^^^^^^^^^^^^
@@ -54,7 +52,7 @@ Stokes Vector
    light = StokesVector(1, 0.6, 0, 0.8)
 
 Matrices
---------
+~~~~~~~~
 
 Jonex Matrix
 ^^^^^^^^^^^^
@@ -84,7 +82,7 @@ Coherency Matrix
 ^^^^^^^^^^^^^^^^
 
 Sources
-=======
+-------
 
 Florian Ratajczak, Optyka Ośrodków Anizotropowych, Wydawnictwo Naukowe PWN, Warszawa, 1994
 
