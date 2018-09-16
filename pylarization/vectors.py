@@ -30,7 +30,6 @@ class JonesVector(PolarizationEllipse):
         self._vector = np.matrix([[Ex], [Ey]], dtype=complex)
         self._x_phase = np.angle(Ex)
         self._y_phase = np.angle(Ey)
-        self._simplify()
         super().__init__(
                          self._get_amplitude(0),
                          self._get_amplitude(1),
