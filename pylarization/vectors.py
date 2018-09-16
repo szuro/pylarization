@@ -162,7 +162,7 @@ class StokesVector(PolarizationEllipse):
     """
     def __init__(self, I, M, C, S):
         self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
-        super().__init__(self.E0x, self.E0y, self._calc_phase())
+        super().__init__(self._calc_E0x(), self._calc_E0y(), self._calc_phase())
 
     @classmethod
     def from_matrix(cls, matrix_):
@@ -200,6 +200,9 @@ class StokesVector(PolarizationEllipse):
             >>> round(light.E0x, 2)
             0.0
         """
+        return super().E0x
+
+    def _calc_E0x(self):
         return np.sqrt(
             (self._vector[0] +
              self._vector[1]) / 2
@@ -225,6 +228,9 @@ class StokesVector(PolarizationEllipse):
             >>> round(light.E0y, 2)
             1.0
         """
+        return super().E0y
+
+    def _calc_E0y(self):
         return np.sqrt(
             (self._vector[0] -
              self._vector[1]) / 2
@@ -260,6 +266,7 @@ class StokesVector(PolarizationEllipse):
         After normalization the magnitude should be equal to ~1.
         """
         np.divide(self._vector, self._vector[0], out=self.vector)
+        super().__init__(self._calc_E0x(), self._calc_E0y(), self._calc_phase())
 
     def __str__(self):
         return "I={}, M={}, C={}, S={}".format(
