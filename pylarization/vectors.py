@@ -162,7 +162,7 @@ class StokesVector(PolarizationEllipse):
     """
     def __init__(self, I, M, C, S):
         self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
-        super().__init__(self.E0x, self.E0y, self.phase)
+        super().__init__(self.E0x, self.E0y, self._calc_phase())
 
     @classmethod
     def from_matrix(cls, matrix_):
@@ -246,6 +246,9 @@ class StokesVector(PolarizationEllipse):
             >>> round(light.phase, 2)
             1.57
         """
+        return super().phase
+
+    def _calc_phase(self):
         return np.arctan2(self._vector[3], self._vector[2]).item()
 
     def normalize(self):
