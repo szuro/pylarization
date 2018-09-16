@@ -4,11 +4,12 @@ Both are used in transforming light polarization states.
 It also contains the coherency matrix, which is used to describe polarization.
 """
 import numpy as np
+import abc
 from pylarization.vectors import JonesVector, StokesVector
 from pylarization.ellipse import PolarizationEllipse
 
 
-class _Matrix(object):
+class _Matrix(abc.ABC):
     """
     Abstract matrix class.
     Not to be used directly.
