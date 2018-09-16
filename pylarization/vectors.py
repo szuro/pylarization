@@ -31,7 +31,11 @@ class JonesVector(PolarizationEllipse):
         self._x_phase = np.angle(Ex)
         self._y_phase = np.angle(Ey)
         self._simplify()
-        super().__init__(self.E0x, self.E0y, self._y_phase - self._x_phase)
+        super().__init__(
+                         self._get_amplitude(0),
+                         self._get_amplitude(1),
+                         self._y_phase - self._x_phase
+                         )
 
     @classmethod
     def from_matrix(cls, matrix_):
@@ -63,7 +67,7 @@ class JonesVector(PolarizationEllipse):
             >>> round(light.E0x, 2)
             0.45
         """
-        return self._get_amplitude(0)
+        return super().E0x
 
     @property
     def E0y(self):
@@ -81,7 +85,7 @@ class JonesVector(PolarizationEllipse):
             >>> round(light.E0y, 2)
             0.89
         """
-        return self._get_amplitude(1)
+        return super().E0y
 
     @property
     def phase(self):
