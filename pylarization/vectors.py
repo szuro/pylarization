@@ -126,6 +126,11 @@ class JonesVector(PolarizationEllipse):
         if absW2 == 0:
             absW2 = 1
         np.divide(self._vector, np.sqrt(absW2), out=self._vector)
+        super().__init__(
+                         self._get_amplitude(0),
+                         self._get_amplitude(1),
+                         self._y_phase - self._x_phase
+                        )
 
     def _get_amplitude(self, index):
         """
