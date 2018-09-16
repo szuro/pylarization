@@ -34,7 +34,7 @@ class JonesVector(PolarizationEllipse):
                          self._get_amplitude(0),
                          self._get_amplitude(1),
                          self._y_phase - self._x_phase
-                         )
+                        )
 
     @classmethod
     def from_matrix(cls, matrix_):
@@ -162,7 +162,11 @@ class StokesVector(PolarizationEllipse):
     """
     def __init__(self, I, M, C, S):
         self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
-        super().__init__(self._calc_E0x(), self._calc_E0y(), self._calc_phase())
+        super().__init__(
+                         self._calc_E0x(),
+                         self._calc_E0y(),
+                         self._calc_phase()
+                        )
 
     @classmethod
     def from_matrix(cls, matrix_):
@@ -266,7 +270,11 @@ class StokesVector(PolarizationEllipse):
         After normalization the magnitude should be equal to ~1.
         """
         np.divide(self._vector, self._vector[0], out=self.vector)
-        super().__init__(self._calc_E0x(), self._calc_E0y(), self._calc_phase())
+        super().__init__(
+                         self._calc_E0x(),
+                         self._calc_E0y(),
+                         self._calc_phase()
+                        )
 
     def __str__(self):
         return "I={}, M={}, C={}, S={}".format(
