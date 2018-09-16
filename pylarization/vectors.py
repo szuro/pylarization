@@ -249,6 +249,9 @@ class StokesVector(PolarizationEllipse):
         return super().phase
 
     def _calc_phase(self):
+        """
+        Calculates the phase difference.
+        """
         return np.arctan2(self._vector[3], self._vector[2]).item()
 
     def normalize(self):
