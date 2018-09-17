@@ -101,7 +101,11 @@ class CoherencyMatrix(PolarizationEllipse):
     """
     def __init__(self, Ixx, Ixy, Iyx, Iyy):
         self._matrix = np.matrix([[Ixx, Ixy], [Iyx, Iyy]], dtype=complex)
-        super().__init__(self.E0x, self.E0y, self.phase)
+        super().__init__(
+                         self._calc_E0x(),
+                         self._calc_E0y(),
+                         self._calc_phase()
+                        )
 
     @property
     def E0x(self):
@@ -120,6 +124,9 @@ class CoherencyMatrix(PolarizationEllipse):
             0.44
 
         """
+        return super().E0x
+
+    def _calc_E0x():
         return np.sqrt(self._matrix.item(0)).real
 
     @property
@@ -138,6 +145,9 @@ class CoherencyMatrix(PolarizationEllipse):
             >>> round(light.E0y, 2)
             0.89
         """
+        return super().E0y
+
+    def _calc_E0y(self):
         return np.sqrt(self._matrix.item(3)).real
 
     @property
@@ -156,6 +166,9 @@ class CoherencyMatrix(PolarizationEllipse):
             >>> round(light.phase, 2)
             1.57
         """
+        return super().phase
+
+    def _calc_phase(self):
         return np.angle(self._matrix.item(1))
 
     @classmethod
