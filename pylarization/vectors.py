@@ -141,6 +141,12 @@ class JonesVector(PolarizationEllipse):
                 self._vector[index]
             ).item().real
 
+    def __add__(self, other):
+        vector = self.vector + other.vector
+        return JonesVector.from_matrix(vector)
+
+    __radd__ = __add__
+
 
 class StokesVector(PolarizationEllipse):
     """
@@ -288,3 +294,9 @@ class StokesVector(PolarizationEllipse):
             self._vector[2].item(),
             self._vector[3].item()
             )
+
+    def __add__(self, other):
+        vector = self.vector + other.vector
+        return StokesVector.from_matrix(vector)
+
+    __radd__ = __add__
