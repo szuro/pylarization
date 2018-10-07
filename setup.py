@@ -4,7 +4,6 @@ https://github.com/szuro/pylarization
 """
 
 from setuptools import setup, find_packages
-from codecs import open
 from os import path
 
 here = path.abspath(path.dirname(__file__))
@@ -15,7 +14,7 @@ with open(path.join(here, 'README.rst'), 'r', encoding='utf-8') as f:
 
 setup(
     name='pylarization',
-    version='0.1.4',
+    version='0.1.5',
     description='Package for polarization state calculations',
     long_description=long_description,
     long_description_content_type="text/x-rst",
