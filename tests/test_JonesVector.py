@@ -50,5 +50,16 @@ class JonesVectorNormalization(DummyVector.DummyVectorNormalization):
         self.circular_right_handed_normalized.normalize()
 
 
+class JonesVectorAddition(unittest.TestCase):
+    def setUp(self):
+        self.circular_left_handed = JonesVector(E, -E * 1j)
+        self.circular_right_handed = JonesVector(E, E * 1j)
+
+    def test_addition(self):
+        expected_sum = JonesVector(2 / sqrt(2), 0)
+        vector_sum = self.circular_right_handed + self.circular_left_handed
+        self.assertEqual(expected_sum.vector.all(), vector_sum.vector.all())
+
+
 if __name__ == '__main__':
     unittest.main()
