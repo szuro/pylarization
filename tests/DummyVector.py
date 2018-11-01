@@ -11,7 +11,7 @@ class DummyVector(object):
         self.complement_diagonal_angle = 0.0
 
 
-class DummyVectorValues(unittest.TestCase):
+class TestDummyVectorValues(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = DummyVector()
         self.linear_vertical = DummyVector()
@@ -57,7 +57,7 @@ class DummyVectorValues(unittest.TestCase):
         self.assertAlmostEqual(self.circular_right_handed.diagonal_angle, pi/4)
 
 
-class DummyVectorNormalization(unittest.TestCase):
+class TestDummyVectorNormalization(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = DummyVector()
         self.linear_vertical = DummyVector()

@@ -7,7 +7,7 @@ from tests import DummyVector
 E = sqrt(2) * 0.5
 
 
-class PolarizationEllipseValues(DummyVector.DummyVectorValues):
+class TestPolarizationEllipseValues(DummyVector.TestDummyVectorValues):
     def setUp(self):
         self.linear_horizontal = PolarizationEllipse(1.0, 0.0, 0.0)
         self.linear_vertical = PolarizationEllipse(0.0, 1.0, 0.0)
@@ -18,7 +18,7 @@ class PolarizationEllipseValues(DummyVector.DummyVectorValues):
         self.circular_right_handed = PolarizationEllipse(E, E, pi/2)
 
 
-class PolarizationEllipseAddition(unittest.TestCase):
+class TestPolarizationEllipseAddition(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = PolarizationEllipse(1.0, 0.0, 0.0)
         self.linear_vertical = PolarizationEllipse(0.0, 1.0, 0.0)

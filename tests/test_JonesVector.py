@@ -7,7 +7,7 @@ from tests import DummyVector
 E = sqrt(2) * 0.5
 
 
-class JonesVectorValues(DummyVector.DummyVectorValues):
+class TestJonesVectorValues(DummyVector.TestDummyVectorValues):
     def setUp(self):
         self.linear_horizontal = JonesVector(1, 0)
         self.linear_vertical = JonesVector(0, 1)
@@ -18,7 +18,7 @@ class JonesVectorValues(DummyVector.DummyVectorValues):
         self.circular_right_handed = JonesVector(E, E * 1j)
 
 
-class JonesVectorNormalization(DummyVector.DummyVectorNormalization):
+class TestJonesVectorNormalization(DummyVector.TestDummyVectorNormalization):
     def setUp(self):
         self.linear_horizontal = JonesVector(1, 0)
         self.linear_vertical = JonesVector(0, 1)
@@ -50,7 +50,7 @@ class JonesVectorNormalization(DummyVector.DummyVectorNormalization):
         self.circular_right_handed_normalized.normalize()
 
 
-class JonesVectorAddition(unittest.TestCase):
+class TestJonesVectorAddition(unittest.TestCase):
     def setUp(self):
         self.circular_left_handed = JonesVector(E, -E * 1j)
         self.circular_right_handed = JonesVector(E, E * 1j)
