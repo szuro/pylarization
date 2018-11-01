@@ -4,7 +4,7 @@ from pylarization.vectors import StokesVector
 from tests import DummyVector
 
 
-class StokesVectorValues(DummyVector.DummyVectorValues):
+class TestStokesVectorValues(DummyVector.TestDummyVectorValues):
     def setUp(self):
         self.linear_horizontal = StokesVector(1, 1, 0, 0)
         self.linear_vertical = StokesVector(1, -1, 0, 0)
@@ -15,7 +15,7 @@ class StokesVectorValues(DummyVector.DummyVectorValues):
         self.circular_right_handed = StokesVector(1, 0, 0, 1)
 
 
-class StokesVectorNormalization(DummyVector.DummyVectorNormalization):
+class TestStokesVectorNormalization(DummyVector.TestDummyVectorNormalization):
     def setUp(self):
         self.linear_horizontal = StokesVector(1, 1, 0, 0)
         self.linear_vertical = StokesVector(1, -1, 0, 0)
@@ -45,6 +45,17 @@ class StokesVectorNormalization(DummyVector.DummyVectorNormalization):
 
         self.circular_right_handed_normalized = StokesVector(1, 0, 0, 1)
         self.circular_right_handed_normalized.normalize()
+
+
+class TestStokesVectorAddition(unittest.TestCase):
+    def setUp(self):
+        self.linear_horizontal = StokesVector(1, 1, 0, 0)
+        self.linear_vertical = StokesVector(1, -1, 0, 0)
+
+    def test_addition(self):
+        expected_sum = StokesVector(2, 0, 0, 0)
+        vector_sum = self.linear_horizontal + self.linear_vertical
+        self.assertEqual(expected_sum.vector.all(), vector_sum.vector.all())
 
 
 if __name__ == '__main__':

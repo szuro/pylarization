@@ -183,3 +183,9 @@ class CoherencyMatrix(PolarizationEllipse):
     @property
     def matrix(self):
         return self._matrix
+
+    def __add__(self, other):
+        matrix = self._matrix + other._matrix
+        return CoherencyMatrix.from_matrix(matrix)
+
+    __radd__ = __add__
