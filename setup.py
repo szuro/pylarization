@@ -1,6 +1,6 @@
 """
 Project home:
-https://github.com/szuro/pylarization
+https://gitlab.com/szuro/pylarization
 """
 
 from setuptools import setup, find_packages
@@ -18,7 +18,7 @@ setup(
     description='Package for polarization state calculations',
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url='https://github.com/szuro/pylarization',
+    url='https://gitlab.com/szuro/pylarization',
     author='Robert Szulist',
     author_email='r.szulist@gmail.com',
     classifiers=[
