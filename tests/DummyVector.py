@@ -81,7 +81,7 @@ class DummyVectorNormalization(unittest.TestCase):
             self.linear_horizontal_normalized.azimuth)
         self.assertAlmostEqual(
             self.linear_vertical.azimuth,
-            self.linear_vertical.azimuth)
+            self.linear_vertical_normalized.azimuth)
         self.assertAlmostEqual(
             self.linear_plus45.azimuth,
             self.linear_plus45_normalized.azimuth)
@@ -104,7 +104,7 @@ class DummyVectorNormalization(unittest.TestCase):
             self.linear_horizontal_normalized.phase)
         self.assertAlmostEqual(
             self.linear_vertical.phase,
-            self.linear_vertical.phase)
+            self.linear_vertical_normalized.phase)
         self.assertAlmostEqual(
             self.linear_plus45.phase,
             self.linear_plus45_normalized.phase)
@@ -127,7 +127,7 @@ class DummyVectorNormalization(unittest.TestCase):
             self.linear_horizontal_normalized.ellipticity_angle)
         self.assertAlmostEqual(
             self.linear_vertical.ellipticity_angle,
-            self.linear_vertical.ellipticity_angle)
+            self.linear_vertical_normalized.ellipticity_angle)
         self.assertAlmostEqual(
             self.linear_plus45.ellipticity_angle,
             self.linear_plus45_normalized.ellipticity_angle)
@@ -150,7 +150,7 @@ class DummyVectorNormalization(unittest.TestCase):
             self.linear_horizontal_normalized.diagonal_angle)
         self.assertAlmostEqual(
             self.linear_vertical.diagonal_angle,
-            self.linear_vertical.diagonal_angle)
+            self.linear_vertical_normalized.diagonal_angle)
         self.assertAlmostEqual(
             self.linear_plus45.diagonal_angle,
             self.linear_plus45_normalized.diagonal_angle)
