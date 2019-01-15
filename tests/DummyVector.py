@@ -3,23 +3,28 @@ from numpy import pi
 
 
 class DummyVector(object):
-    def __init__(self):
-        self.ellipticity_angle = 0.0
-        self.azimuth = 0.0
-        self.phase = 0.0
-        self.diagonal_angle = 0.0
-        self.complement_diagonal_angle = 0.0
+    def __init__(self,
+                 ellipticity_angle=0.0,
+                 azimuth=0.0,
+                 phase=0.0,
+                 diagonal_angle=0.0,
+                 complement_diagonal_angle=0.0):
+        self.ellipticity_angle = ellipticity_angle
+        self.azimuth = azimuth
+        self.phase = phase
+        self.diagonal_angle = diagonal_angle
+        self.complement_diagonal_angle = complement_diagonal_angle
 
 
 class TestDummyVectorValues(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = DummyVector()
-        self.linear_vertical = DummyVector()
-        self.linear_plus45 = DummyVector()
-        self.linear_minus45 = DummyVector()
-        self.elliptic = DummyVector()
-        self.circular_left_handed = DummyVector()
-        self.circular_right_handed = DummyVector()
+        self.linear_vertical = DummyVector(azimuth=pi/2, diagonal_angle=pi/2)
+        self.linear_plus45 = DummyVector(azimuth=pi/4, diagonal_angle=pi/4)
+        self.linear_minus45 = DummyVector(azimuth=-pi/4, phase=pi, diagonal_angle=pi/4)
+        self.elliptic = DummyVector(ellipticity_angle=0.463647609, phase=pi/2)
+        self.circular_left_handed = DummyVector(ellipticity_angle=-pi/4, phase=-pi/2, diagonal_angle=pi/4)
+        self.circular_right_handed = DummyVector(ellipticity_angle=pi/4, phase=pi/2, diagonal_angle=pi/4)
 
     def test_azimuth(self):
         self.assertAlmostEqual(self.linear_horizontal.azimuth, 0.0)
