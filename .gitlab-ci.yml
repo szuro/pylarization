@@ -1,0 +1,9 @@
+image: python:3.6
+
+before_script:
+  - python -V
+  - pip install numpy
+
+test:
+  script:
+  - python -m unittest discover tests
