@@ -141,79 +141,17 @@ class StokesVector(PolarizationEllipse):
         """
         return self._vector
 
-    @property
-    def E0x(self):
-        """
-        Amplitude along the X axis.
-
-        Returns
-        -------
-        float
-            Amplitude.
-
-        Examples
-        --------
-            >>> light = StokesVector(1, 1, 0, 0)
-            >>> round(light.E0x, 2)
-            1.0
-
-            >>> light = StokesVector(1, -1, 0, 0)
-            >>> round(light.E0x, 2)
-            0.0
-        """
-        return super().E0x
-
     def _calc_E0x(self):
         return np.sqrt(
             (self._vector[0] +
              self._vector[1]) / 2
             ).item()
 
-    @property
-    def E0y(self):
-        """
-        Amplitude along the Y axis.
-
-        Returns
-        -------
-        float
-            Amplitude.
-
-        Examples
-        --------
-            >>> light = StokesVector(1, 1, 0, 0)
-            >>> round(light.E0y, 2)
-            0.0
-
-            >>> light = StokesVector(1, -1, 0, 0)
-            >>> round(light.E0y, 2)
-            1.0
-        """
-        return super().E0y
-
     def _calc_E0y(self):
         return np.sqrt(
             (self._vector[0] -
              self._vector[1]) / 2
             ).item()
-
-    @property
-    def phase(self):
-        """
-        Phase difference of light amplitudes.
-
-        Returns
-        -------
-        float
-            Phase difference.
-
-        Examples
-        --------
-            >>> light = StokesVector(1, 0.6, 0, 0.8)
-            >>> round(light.phase, 2)
-            1.57
-        """
-        return super().phase
 
     def _calc_phase(self):
         """
