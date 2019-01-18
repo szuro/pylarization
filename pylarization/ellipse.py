@@ -193,6 +193,6 @@ class PolarizationEllipse(object):
         E0x = self.E0x + other.E0x
         E0y = self.E0y + other.E0y
         phase = self.phase + other.phase
-        return PolarizationEllipse(E0y, E0y, phase)
+        return PolarizationEllipse(E0x, E0y, phase)
 
     ___radd__ = __add__
