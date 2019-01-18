@@ -107,66 +107,11 @@ class CoherencyMatrix(PolarizationEllipse):
                          self._calc_phase()
                         )
 
-    @property
-    def E0x(self):
-        """
-        Amplitude along the X axis.
-
-        Returns
-        -------
-        float
-            Amplitude.
-
-        Examples
-        --------
-            >>> light = CoherencyMatrix(0.198, 0.396j, -0.396j, 0.792)
-            >>> round(light.E0x, 2)
-            0.44
-
-        """
-        return super().E0x
-
     def _calc_E0x():
         return np.sqrt(self._matrix.item(0)).real
 
-    @property
-    def E0y(self):
-        """
-        Amplitude along the Y axis.
-
-        Returns
-        -------
-        float
-            Amplitude.
-
-        Examples
-        --------
-            >>> light = CoherencyMatrix(0.198, 0.396j, -0.396j, 0.792)
-            >>> round(light.E0y, 2)
-            0.89
-        """
-        return super().E0y
-
     def _calc_E0y(self):
         return np.sqrt(self._matrix.item(3)).real
-
-    @property
-    def phase(self):
-        """
-        Phase difference of light amplitudes.
-
-        Returns
-        -------
-        float
-            Phase difference.
-
-        Examples
-        --------
-            >>> light = CoherencyMatrix(0.198, 0.396j, -0.396j, 0.792)
-            >>> round(light.phase, 2)
-            1.57
-        """
-        return super().phase
 
     def _calc_phase(self):
         return np.angle(self._matrix.item(1))
