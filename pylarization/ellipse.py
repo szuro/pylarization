@@ -49,12 +49,6 @@ class PolarizationEllipse(object):
         -------
         float
             Phase in radians.
-
-        Examples
-        --------
-            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.phase, 2)
-            1.57
         """
         return self._phase
 
@@ -71,18 +65,6 @@ class PolarizationEllipse(object):
             Expected values are in the range of:
 
             -diagonal_angle <= azimuth <= diagonal_angle
-
-        Examples
-        --------
-            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.azimuth, 2)
-            0.0
-            >>> light = PolarizationEllipse(1, 0, 0)
-            >>> round(light.azimuth, 2)
-            0.0
-            >>> light = PolarizationEllipse(0, 1, 0)
-            >>> round(light.azimuth, 2)
-            1.57
         """
         cos_phase = np.cos(self.phase)
         try:
@@ -109,12 +91,6 @@ class PolarizationEllipse(object):
             Expected values are in the range of:
 
             -pi/4 <= ellipticity_angle <= pi/4
-
-        Examples
-        --------
-            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.ellipticity_angle, 2)
-            0.46
         """
         numerator = 2 * self.E0x * self.E0y * np.sin(self.phase)
         denominator = self.E0x**2 + self.E0y**2
@@ -134,12 +110,6 @@ class PolarizationEllipse(object):
             Expected values are in the range of:
 
             0 <= diagonal_angle <= pi/2
-
-        Examples
-        --------
-            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.diagonal_angle, 2)
-            1.11
         """
         diagonal_angle = np.arctan2(
             self.E0y,
@@ -160,12 +130,6 @@ class PolarizationEllipse(object):
             Expected values are in the range of:
 
             0 <= complement_diagonal_angle <= pi/2
-
-        Examples
-        --------
-            >>> light = PolarizationEllipse(0.445, 0.89, 3.1415/2)
-            >>> round(light.complement_diagonal_angle, 2)
-            0.46
         """
         return np.pi / 2 - self.diagonal_angle
 
