@@ -20,15 +20,19 @@ class TestPolarizationEllipseValues(DummyVector.TestDummyVectorValues):
 
 class TestPolarizationEllipseAddition(unittest.TestCase):
     def setUp(self):
-        self.linear_horizontal = PolarizationEllipse(1.0, 0.0, 0.0)
+        self.linear_horizontal = PolarizationEllipse(2.0, 0.0, 0.5)
         self.linear_vertical = PolarizationEllipse(0.0, 1.0, 0.0)
 
     def test_addition(self):
-        expected_sum = PolarizationEllipse(1.0, 1.0, 0.0)
+        expected_sum = PolarizationEllipse(2.0, 1.0, 0.5)
         vector_sum = self.linear_horizontal + self.linear_vertical
         self.assertEqual(
-            expected_sum._amplitudes.all(),
-            vector_sum._amplitudes.all()
+            expected_sum._amplitudes[0].item(),
+            vector_sum._amplitudes[0].item()
+            )
+        self.assertAlmostEqual(
+            expected_sum._amplitudes[1].item(),
+            vector_sum._amplitudes[1].item()
             )
         self.assertAlmostEqual(expected_sum.phase, vector_sum.phase)
 
