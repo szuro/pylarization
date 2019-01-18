@@ -50,60 +50,6 @@ class JonesVector(PolarizationEllipse):
         """
         return self._vector
 
-    @property
-    def E0x(self):
-        """
-        Amplitude along the X axis.
-
-        Returns
-        -------
-        float
-            Amplitude.
-
-        Examples
-        --------
-            >>> light = JonesVector(0.445, 0.89j)
-            >>> round(light.E0x, 2)
-            0.45
-        """
-        return super().E0x
-
-    @property
-    def E0y(self):
-        """
-        Amplitude along the Y axis.
-
-        Returns
-        -------
-        float
-            Amplitude.
-
-        Examples
-        --------
-            >>> light = JonesVector(0.445, 0.89j)
-            >>> round(light.E0y, 2)
-            0.89
-        """
-        return super().E0y
-
-    @property
-    def phase(self):
-        """
-        Phase difference of light amplitudes.
-
-        Returns
-        -------
-        float
-            Phase difference.
-
-        Examples
-        --------
-            >>> light = JonesVector(0.445, 0.89j)
-            >>> round(light.phase, 2)
-            1.57
-        """
-        return super().phase
-
     def _simplify(self):
         """
         Method for transforming Jones vector to its simplified version.
