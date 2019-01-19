@@ -1,6 +1,7 @@
 import unittest
 from numpy import sqrt
 from pylarization.vectors import JonesVector
+from pylarization.polarizations import JonesVectorState
 from tests import DummyVector
 
 
@@ -9,24 +10,24 @@ E = sqrt(2) * 0.5
 
 class TestJonesVectorValues(DummyVector.TestDummyVectorValues):
     def setUp(self):
-        self.linear_horizontal = JonesVector(1, 0)
-        self.linear_vertical = JonesVector(0, 1)
-        self.linear_plus45 = JonesVector(E, E)
-        self.linear_minus45 = JonesVector(E, -E)
+        self.linear_horizontal = JonesVectorState.LINEAR_HORIZONTAL.value
+        self.linear_vertical = JonesVectorState.LINEAR_VERTICAL.value
+        self.linear_plus45 = JonesVectorState.LINEAR_DIAGONAL.value
+        self.linear_minus45 = JonesVectorState.LINEAR_ANTIDIAGONAL.value
         self.elliptic = JonesVector(0.89 * 0.5, 0.89 * 1j)
-        self.circular_left_handed = JonesVector(E, -E * 1j)
-        self.circular_right_handed = JonesVector(E, E * 1j)
+        self.circular_left_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
+        self.circular_right_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
 
 
 class TestJonesVectorNormalization(DummyVector.TestDummyVectorNormalization):
     def setUp(self):
-        self.linear_horizontal = JonesVector(1, 0)
-        self.linear_vertical = JonesVector(0, 1)
-        self.linear_plus45 = JonesVector(E, E)
-        self.linear_minus45 = JonesVector(E, -E)
+        self.linear_horizontal = JonesVectorState.LINEAR_HORIZONTAL.value
+        self.linear_vertical = JonesVectorState.LINEAR_VERTICAL.value
+        self.linear_plus45 = JonesVectorState.LINEAR_DIAGONAL.value
+        self.linear_minus45 = JonesVectorState.LINEAR_ANTIDIAGONAL.value
         self.elliptic = JonesVector(0.89 * 0.5, 0.89 * 1j)
-        self.circular_left_handed = JonesVector(E, -E * 1j)
-        self.circular_right_handed = JonesVector(E, E * 1j)
+        self.circular_left_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
+        self.circular_right_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
 
         self.linear_horizontal_normalized = JonesVector(1, 0)
         self.linear_horizontal_normalized.normalize()
