@@ -17,8 +17,6 @@ class TestPolarizationEllipseValues(unittest.TestCase):
         self.circular_left_handed = PolarizationEllipseState.CIRCULAR_LEFT_HANDED.value
         self.circular_right_handed = PolarizationEllipseState.CIRCULAR_RIGHT_HANDED.value
         self.elliptic = PolarizationEllipse(0.445, 0.89, pi/2)
-        self.circular_left_handed = PolarizationEllipse(E, E, pi/2)
-        self.circular_right_handed = PolarizationEllipse(E, E, -pi/2)
 
     def test_azimuth(self):
         self.assertAlmostEqual(self.linear_horizontal.azimuth, 0.0)
