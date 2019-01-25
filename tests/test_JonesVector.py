@@ -29,32 +29,32 @@ class TestJonesVectorNormalization(DummyVector.TestDummyVectorNormalization):
         self.circular_left_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
         self.circular_right_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
 
-        self.linear_horizontal_normalized = JonesVector(1, 0)
+        self.linear_horizontal_normalized = JonesVectorState.LINEAR_HORIZONTAL.value
         self.linear_horizontal_normalized.normalize()
 
-        self.linear_vertical_normalized = JonesVector(0, 1)
+        self.linear_vertical_normalized = JonesVectorState.LINEAR_VERTICAL.value
         self.linear_vertical_normalized.normalize()
 
-        self.linear_plus45_normalized = JonesVector(E, E)
+        self.linear_plus45_normalized = JonesVectorState.LINEAR_DIAGONAL.value
         self.linear_plus45_normalized.normalize()
 
-        self.linear_minus45_normalized = JonesVector(E, -E)
+        self.linear_minus45_normalized = JonesVectorState.LINEAR_ANTIDIAGONAL.value
         self.linear_minus45_normalized.normalize()
 
         self.elliptic_normalized = JonesVector(0.89 * 0.5, 0.89 * 1j)
         self.elliptic_normalized.normalize()
 
-        self.circular_left_handed_normalized = JonesVector(E, -E * 1j)
+        self.circular_left_handed_normalized = JonesVectorState.CIRCULAR_LEFT_HANDED.value
         self.circular_left_handed_normalized.normalize()
 
-        self.circular_right_handed_normalized = JonesVector(E, E * 1j)
+        self.circular_right_handed_normalized = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
         self.circular_right_handed_normalized.normalize()
 
 
 class TestJonesVectorAddition(unittest.TestCase):
     def setUp(self):
-        self.circular_left_handed = JonesVector(E, -E * 1j)
-        self.circular_right_handed = JonesVector(E, E * 1j)
+        self.circular_left_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
+        self.circular_right_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
 
     def test_addition(self):
         expected_sum = JonesVector(2 / sqrt(2), 0)
