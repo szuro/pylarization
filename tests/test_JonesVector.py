@@ -15,8 +15,8 @@ class TestJonesVectorValues(DummyVector.TestDummyVectorValues):
         self.linear_plus45 = JonesVectorState.LINEAR_DIAGONAL.value
         self.linear_minus45 = JonesVectorState.LINEAR_ANTIDIAGONAL.value
         self.elliptic = JonesVector(0.89 * 0.5, 0.89 * 1j)
-        self.circular_left_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
-        self.circular_right_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
+        self.circular_left_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
+        self.circular_right_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
 
 
 class TestJonesVectorNormalization(DummyVector.TestDummyVectorNormalization):
@@ -26,8 +26,8 @@ class TestJonesVectorNormalization(DummyVector.TestDummyVectorNormalization):
         self.linear_plus45 = JonesVectorState.LINEAR_DIAGONAL.value
         self.linear_minus45 = JonesVectorState.LINEAR_ANTIDIAGONAL.value
         self.elliptic = JonesVector(0.89 * 0.5, 0.89 * 1j)
-        self.circular_left_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
-        self.circular_right_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
+        self.circular_left_handed = JonesVectorState.CIRCULAR_LEFT_HANDED.value
+        self.circular_right_handed = JonesVectorState.CIRCULAR_RIGHT_HANDED.value
 
         self.linear_horizontal_normalized = JonesVector(1, 0)
         self.linear_horizontal_normalized.normalize()
