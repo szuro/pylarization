@@ -1,9 +1,23 @@
-image: python:3.6
-
 before_script:
   - python -V
   - pip install numpy
 
-test:
+stages:
+  - test
+  - merge
+
+.tests:
   script:
   - python -m unittest discover tests
+
+testpython35:
+  extends: .tests
+  image: python:3.5
+
+testpython36:
+  extends: .tests
+  image: python:3.6
+  
+testpython37:
+  extends: .tests
+  image: python:3.7
