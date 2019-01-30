@@ -60,6 +60,12 @@ class PolarizationEllipse(object):
         return self._ellipse[2].item()
 
     @property
+    def intensity(self):
+        """The intensity of a beam."""
+        squares = np.square(self._ellipse[:2])
+        return np.sum(squares)
+
+    @property
     def azimuth(self):
         """
         Azimuth (orientation angle) of polarized light.
