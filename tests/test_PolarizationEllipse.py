@@ -57,6 +57,13 @@ class TestPolarizationEllipseValues(unittest.TestCase):
         self.assertAlmostEqual(self.circular_left_handed.diagonal_angle, pi/4)
         self.assertAlmostEqual(self.circular_right_handed.diagonal_angle, pi/4)
 
+    def test_complement_diagonal_angle(self):
+        self.assertAlmostEqual(self.linear_horizontal.complement_diagonal_angle, pi/2)
+        self.assertAlmostEqual(self.linear_vertical.complement_diagonal_angle, 0.0)
+        self.assertAlmostEqual(self.linear_plus45.complement_diagonal_angle, pi/4)
+        self.assertAlmostEqual(self.linear_minus45.complement_diagonal_angle, pi/4)
+        self.assertAlmostEqual(self.circular_left_handed.complement_diagonal_angle, pi/4)
+        self.assertAlmostEqual(self.circular_right_handed.complement_diagonal_angle, pi/4)
 
 class TestPolarizationEllipseAddition(unittest.TestCase):
     def setUp(self):
