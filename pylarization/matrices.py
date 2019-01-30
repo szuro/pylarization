@@ -53,7 +53,7 @@ class JonesMatrix(_Matrix):
 
     def __init__(self, matrix_):
         self._validate_shape(matrix_)
-        self._matrix = np.matrix(matrix_, dtype=complex)
+        self._matrix = np.array(matrix_, dtype=complex)
 
 
 class MuellerMatrix(_Matrix):
@@ -72,7 +72,7 @@ class MuellerMatrix(_Matrix):
 
     def __init__(self, matrix_):
         self._validate_shape(matrix_)
-        self._matrix = np.matrix(matrix_, dtype=float)
+        self._matrix = np.array(matrix_, dtype=float)
 
 
 class CoherencyMatrix(PolarizationEllipse):
@@ -100,7 +100,7 @@ class CoherencyMatrix(PolarizationEllipse):
         Full Coherency Matrix
     """
     def __init__(self, Ixx, Ixy, Iyx, Iyy):
-        self._matrix = np.matrix([[Ixx, Ixy], [Iyx, Iyy]], dtype=complex)
+        self._matrix = np.array([[Ixx, Ixy], [Iyx, Iyy]], dtype=complex)
         super().__init__(
                          self._calc_E0x(),
                          self._calc_E0y(),

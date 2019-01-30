@@ -27,7 +27,7 @@ class PolarizationEllipse(object):
     """
 
     def __init__(self, E0x, E0y, phase):
-        self._amplitudes = np.matrix([[E0x], [E0y]], dtype=float)
+        self._amplitudes = np.array([[E0x], [E0y]], dtype=float)
         self._phase = phase
 
     @property

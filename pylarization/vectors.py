@@ -27,7 +27,7 @@ class JonesVector(PolarizationEllipse):
         Absolute phase of the Ey component.
     """
     def __init__(self, Ex, Ey):
-        self._vector = np.matrix([[Ex], [Ey]], dtype=complex)
+        self._vector = np.array([[Ex], [Ey]], dtype=complex)
         self._x_phase = np.angle(Ex)
         self._y_phase = np.angle(Ey)
         super().__init__(
@@ -118,7 +118,7 @@ class StokesVector(PolarizationEllipse):
         Full Stokes Vector.
     """
     def __init__(self, I, M, C, S):
-        self._vector = np.matrix([[I], [M], [C], [S]], dtype=float)
+        self._vector = np.array([[I], [M], [C], [S]], dtype=float)
         super().__init__(
                          self._calc_E0x(),
                          self._calc_E0y(),
