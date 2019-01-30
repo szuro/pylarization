@@ -29,6 +29,14 @@ class PolarizationEllipse(object):
     def __init__(self, E0x, E0y, phase):
         self._ellipse = np.array([[E0x], [E0y], [phase]], dtype=float)
 
+    @classmethod
+    def from_matrix(cls, matrix_):
+        ellipse = cls(matrix_.item(0),
+                      matrix_.item(1),
+                      matrix_.item(2)
+                     )
+        return ellipse
+
     @property
     def E0x(self):
         """Return the value of amplitude along x axis"""
@@ -153,9 +161,7 @@ class PolarizationEllipse(object):
             )
 
     def __add__(self, other):
-        E0x = self.E0x + other.E0x
-        E0y = self.E0y + other.E0y
-        phase = self.phase + other.phase
-        return PolarizationEllipse(E0x, E0y, phase)
+        ellipse = self._ellipse + other._ellipse
+        return PolarizationEllipse.from_matrix(ellipse)
 
     ___radd__ = __add__
