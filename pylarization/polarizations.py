@@ -33,5 +33,5 @@ class PolarizationEllipseState(Enum):
     LINEAR_VERTICAL = PolarizationEllipse(0.0, 1.0, 0.0)
     LINEAR_DIAGONAL = PolarizationEllipse(sqrt(2) * 0.5, sqrt(2) * 0.5, 0.0)
     LINEAR_ANTIDIAGONAL = PolarizationEllipse(sqrt(2) * 0.5, sqrt(2) * 0.5, pi)
-    CIRCULAR_LEFT_HANDED = PolarizationEllipse(sqrt(2) * 0.5, sqrt(2) * 0.5, -pi/2)
-    CIRCULAR_RIGHT_HANDED = PolarizationEllipse(sqrt(2) * 0.5, sqrt(2) * 0.5, pi/2)
+    CIRCULAR_LEFT_HANDED = PolarizationEllipse(sqrt(2) * 0.5, sqrt(2) * 0.5, pi/2)
+    CIRCULAR_RIGHT_HANDED = PolarizationEllipse(sqrt(2) * 0.5, sqrt(2) * 0.5, -pi/2)
