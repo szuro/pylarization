@@ -16,52 +16,6 @@ class DummyVector(object):
         self.complement_diagonal_angle = complement_diagonal_angle
 
 
-class TestDummyVectorValues(unittest.TestCase):
-    def setUp(self):
-        self.linear_horizontal = DummyVector()
-        self.linear_vertical = DummyVector(azimuth=pi/2, diagonal_angle=pi/2)
-        self.linear_plus45 = DummyVector(azimuth=pi/4, diagonal_angle=pi/4)
-        self.linear_minus45 = DummyVector(azimuth=-pi/4, phase=pi, diagonal_angle=pi/4)
-        self.elliptic = DummyVector(ellipticity_angle=0.463647609, phase=pi/2)
-        self.circular_left_handed = DummyVector(ellipticity_angle=-pi/4, phase=-pi/2, diagonal_angle=pi/4)
-        self.circular_right_handed = DummyVector(ellipticity_angle=pi/4, phase=pi/2, diagonal_angle=pi/4)
-
-    def test_azimuth(self):
-        self.assertAlmostEqual(self.linear_horizontal.azimuth, 0.0)
-        self.assertAlmostEqual(self.linear_vertical.azimuth, pi/2)
-        self.assertAlmostEqual(self.linear_plus45.azimuth, pi/4)
-        self.assertAlmostEqual(self.linear_minus45.azimuth, -pi/4)
-        self.assertAlmostEqual(self.elliptic.azimuth, 0.0)
-        self.assertIsNotNone(self.circular_left_handed)
-        self.assertIsNotNone(self.circular_right_handed)
-
-    def test_phase(self):
-        self.assertAlmostEqual(self.linear_horizontal.phase, 0.0)
-        self.assertAlmostEqual(self.linear_vertical.phase, 0.0)
-        self.assertAlmostEqual(self.linear_plus45.phase, 0.0)
-        self.assertAlmostEqual(self.linear_minus45.phase, pi)
-        self.assertAlmostEqual(self.elliptic.phase, pi/2)
-        self.assertAlmostEqual(self.circular_left_handed.phase, -pi/2)
-        self.assertAlmostEqual(self.circular_right_handed.phase, pi/2)
-
-    def test_ellipticity_angle(self):
-        self.assertAlmostEqual(self.linear_horizontal.ellipticity_angle, 0.0)
-        self.assertAlmostEqual(self.linear_vertical.ellipticity_angle, 0.0)
-        self.assertAlmostEqual(self.linear_plus45.ellipticity_angle, 0.0)
-        self.assertAlmostEqual(self.linear_minus45.ellipticity_angle, 0.0)
-        self.assertAlmostEqual(self.elliptic.ellipticity_angle, 0.463647609)
-        self.assertAlmostEqual(self.circular_left_handed.ellipticity_angle, -pi/4)
-        self.assertAlmostEqual(self.circular_right_handed.ellipticity_angle, pi/4)
-
-    def test_diagonal_angle(self):
-        self.assertAlmostEqual(self.linear_horizontal.diagonal_angle, 0.0)
-        self.assertAlmostEqual(self.linear_vertical.diagonal_angle, pi/2)
-        self.assertAlmostEqual(self.linear_plus45.diagonal_angle, pi/4)
-        self.assertAlmostEqual(self.linear_minus45.diagonal_angle, pi/4)
-        self.assertAlmostEqual(self.circular_left_handed.diagonal_angle, pi/4)
-        self.assertAlmostEqual(self.circular_right_handed.diagonal_angle, pi/4)
-
-
 class TestDummyVectorNormalization(unittest.TestCase):
     def setUp(self):
         self.linear_horizontal = DummyVector()
