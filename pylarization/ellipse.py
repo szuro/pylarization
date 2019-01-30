@@ -27,18 +27,17 @@ class PolarizationEllipse(object):
     """
 
     def __init__(self, E0x, E0y, phase):
-        self._amplitudes = np.array([[E0x], [E0y]], dtype=float)
-        self._phase = phase
+        self._ellipse = np.array([[E0x], [E0y], [phase]], dtype=float)
 
     @property
     def E0x(self):
         """Return the value of amplitude along x axis"""
-        return self._amplitudes[0].item()
+        return self._ellipse[0].item()
 
     @property
     def E0y(self):
         """Return the value of amplitude along y axis"""
-        return self._amplitudes[1].item()
+        return self._ellipse[1].item()
 
     @property
     def phase(self):
@@ -50,7 +49,7 @@ class PolarizationEllipse(object):
         float
             Phase in radians.
         """
-        return self._phase
+        return self._ellipse[2].item()
 
     @property
     def azimuth(self):

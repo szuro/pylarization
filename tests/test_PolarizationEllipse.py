@@ -63,12 +63,12 @@ class TestPolarizationEllipseAddition(unittest.TestCase):
         expected_sum = PolarizationEllipse(2.0, 1.0, 0.5)
         vector_sum = self.linear_horizontal + self.linear_vertical
         self.assertEqual(
-            expected_sum._amplitudes[0].item(),
-            vector_sum._amplitudes[0].item()
+            expected_sum._ellipse[0].item(),
+            vector_sum._ellipse[0].item()
             )
         self.assertAlmostEqual(
-            expected_sum._amplitudes[1].item(),
-            vector_sum._amplitudes[1].item()
+            expected_sum._ellipse[1].item(),
+            vector_sum._ellipse[1].item()
             )
         self.assertAlmostEqual(expected_sum.phase, vector_sum.phase)
 
