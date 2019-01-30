@@ -149,10 +149,10 @@ class PolarizationEllipse(object):
         """
         Calculate both axes of the ellipse.
         """
-        E0 = np.square(self._amplitudes).sum()
+        E0 = self.intensity
         compelent = self.complement_diagonal_angle
         sqrt_in_numerator = np.sqrt(1 - np.square(np.sin(compelent)) *
-                                    np.square(np.sin(self._phase))
+                                    np.square(np.sin(self.phase))
                                     )
         minor_axis = E0 * np.sqrt(1 - sqrt_in_numerator) * np.sqrt(0.5)
         major_axis = E0 * np.sqrt(1 + sqrt_in_numerator) * np.sqrt(0.5)
