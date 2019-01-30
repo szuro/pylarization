@@ -1,3 +1,9 @@
+"""
+Enums for edge cases of polarizarion.
+NOTE!
+Enums presented here confirm to the IEEE convention of left-/righ-handedness.
+"""
+
 from enum import Enum
 from math import sqrt, pi
 from pylarization.ellipse import PolarizationEllipse
@@ -18,8 +24,8 @@ class StokesVectorState(Enum):
     LINEAR_VERTICAL = StokesVector(1, -1, 0, 0)
     LINEAR_DIAGONAL = StokesVector(1, 0, 1, 0)
     LINEAR_ANTIDIAGONAL = StokesVector(1, 0, -1, 0)
-    CIRCULAR_LEFT_HANDED = StokesVector(1, 0, 0, -1)
-    CIRCULAR_RIGHT_HANDED = StokesVector(1, 0, 0, 1)
+    CIRCULAR_LEFT_HANDED = StokesVector(1, 0, 0, 1)
+    CIRCULAR_RIGHT_HANDED = StokesVector(1, 0, 0, -1)
 
 
 class PolarizationEllipseState(Enum):
