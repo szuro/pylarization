@@ -14,7 +14,7 @@ with open(path.join(here, 'README.rst'), 'r') as f:
 
 setup(
     name='pylarization',
-    version='0.1.6',
+    version='0.1.7',
     description='Package for polarization state calculations',
     long_description=long_description,
     long_description_content_type="text/x-rst",
@@ -29,6 +29,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7'
     ],
     keywords='polarization light ellipse jones stokes mueller coherency',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
