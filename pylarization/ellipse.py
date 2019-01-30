@@ -62,8 +62,7 @@ class PolarizationEllipse(object):
     @property
     def intensity(self):
         """The intensity of a beam."""
-        squares = np.square(self._ellipse[:2])
-        return np.sum(squares)
+        return np.square(self._ellipse[:2]).sum()
 
     @property
     def azimuth(self):
