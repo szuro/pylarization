@@ -33,7 +33,7 @@ class PolarizationEllipse(object):
         ellipse = cls(matrix_.item(0),
                       matrix_.item(1),
                       matrix_.item(2)
-                     )
+                      )
         return ellipse
 
     @property
