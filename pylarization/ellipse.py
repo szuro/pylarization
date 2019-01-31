@@ -2,6 +2,7 @@
 Module containing a class describing polarization state using trigonometry.
 """
 import numpy as np
+from collections import namedtuple
 
 
 class PolarizationEllipse(object):
@@ -170,9 +171,9 @@ class PolarizationEllipse(object):
 
         Returns
         -------
-        tuple
-            major_axis
-            minor_axis
+        namedtuple
+            minor - minor axis of polarization ellipse
+            major - major axis of polarization ellipse
         """
         E0 = self.intensity
         compelent = self.complement_diagonal_angle
@@ -181,7 +182,8 @@ class PolarizationEllipse(object):
                                     )
         minor_axis = E0 * np.sqrt(1 - sqrt_in_numerator) * np.sqrt(0.5)
         major_axis = E0 * np.sqrt(1 + sqrt_in_numerator) * np.sqrt(0.5)
-        return major_axis, minor_axis
+        axes = namedtuple("axis", ["minor", "major"])
+        return axes(minor_axis, major_axis)
 
     def __str__(self):
         return "E0x = {:5.3f}, E0y = {:5.3f}, phase = {:5.3f}".format(
