@@ -19,11 +19,9 @@ class PolarizationEllipse(object):
 
     Attributes
     ----------
-    :_amplitudes:
-        Float matrix holding values of x and y amplitudes of
-        electric field vector.
-    :_phase:
-        The phase difference between x and y components.
+    :_ellipse:
+        Float matrix holding values of X and Y amplitudes of
+        electric field vector as well as the phase.
     """
 
     def __init__(self, E0x, E0y, phase):
@@ -39,12 +37,26 @@ class PolarizationEllipse(object):
 
     @property
     def E0x(self):
-        """Return the value of amplitude along x axis"""
+        """
+        Return the value of amplitude along X axis
+
+        Returns
+        -------
+        float
+            Amplitude along X axis.
+        """
         return self._ellipse[0].item()
 
     @property
     def E0y(self):
-        """Return the value of amplitude along y axis"""
+        """
+        Return the value of amplitude along Y axis
+
+        Returns
+        -------
+        float
+            Amplitude along Y axis.
+        """
         return self._ellipse[1].item()
 
     @property
@@ -61,7 +73,14 @@ class PolarizationEllipse(object):
 
     @property
     def intensity(self):
-        """The intensity of a beam."""
+        """
+        The intensity of a beam.
+
+        Returns
+        -------
+        float
+            Intensity of the light beam.
+        """
         return np.square(self._ellipse[:2]).sum()
 
     @property
@@ -148,6 +167,12 @@ class PolarizationEllipse(object):
     def calc_axes(self):
         """
         Calculate both axes of the ellipse.
+
+        Returns
+        -------
+        tuple
+            major_axis
+            minor_axis
         """
         E0 = self.intensity
         compelent = self.complement_diagonal_angle
