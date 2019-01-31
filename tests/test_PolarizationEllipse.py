@@ -86,5 +86,10 @@ class TestPolarizationEllipseAddition(unittest.TestCase):
         self.assertAlmostEqual(expected_sum.phase, vector_sum.phase)
 
 
+class TestPolarizationEllipseToString(unittest.TestCase):
+    def test_to_string(self):
+        self.elliptic = PolarizationEllipse(0.445, 0.89, pi/2)
+        self.assertEqual(str(self.elliptic), "E0x = 0.445, E0y = 0.890, phase = 1.571")
+
 if __name__ == '__main__':
     unittest.main()
