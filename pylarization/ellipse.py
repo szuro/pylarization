@@ -159,7 +159,7 @@ class PolarizationEllipse(object):
         return major_axis, minor_axis
 
     def __str__(self):
-        return "E0x={}, E0y={}, phase={}".format(
+        return "E0x = {:5.3f}, E0y = {:5.3f}, phase = {:5.3f}".format(
             self.E0x,
             self.E0y,
             self.phase
