@@ -30,6 +30,10 @@ pack:
     - master@szuro/pylarization
   script:
     - python setup.py sdist bdist_wheel
+  artifacts:
+    expire_in: 1h
+    paths:
+      - dist/
 
 publish:
   image: python:3.6
