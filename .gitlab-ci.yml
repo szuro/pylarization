@@ -4,7 +4,8 @@ before_script:
 
 stages:
   - test
-  - merge
+  - build
+  - publish
 
 .tests:
   script:
@@ -17,7 +18,24 @@ testpython35:
 testpython36:
   extends: .tests
   image: python:3.6
-  
+
 testpython37:
   extends: .tests
   image: python:3.7
+
+pack:
+  image: python:3.6
+  stage: build
+  only:
+    - master@szuro/pylarization
+  script:
+    - python setup.py sdist bdist_wheel
+
+publish:
+  image: python:3.6
+  stage: publish
+  only:
+    - master@szuro/pylarization
+  script:
+    - pip install twine
+    - python -m twine upload dist/*
