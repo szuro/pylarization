@@ -44,16 +44,39 @@ class JonesMatrix(_Matrix):
 
     Parameters
     ----------
-    :matrix_:
-        2 x 2 matrix representing an optical element.
+    :angle:
+        The angle at which the optical element is oriented.
+    :retardance:
+        Phase shift introduced by th eoptical element.
+    :transparency:
+        Magnitude of the light that is allowed through the
+        absorption axis of the optical element.
+        0. <= transparency <= 1.0
     """
 
     _required_shape = (2, 2)
     _vector_class = JonesVector
 
-    def __init__(self, matrix_):
-        self._validate_shape(matrix_)
-        self._matrix = np.array(matrix_, dtype=complex)
+    def __init__(self, angle=0.0, retardance=0.0, transparency=0.0):
+        device_factor = JonesMatrix.device_factor(transparency, retardance)
+        cosine = np.cos(angle)
+        sine = np.sin(angle)
+        self._matrix = np.array(
+            [[cosine + device_factor * sine ** 2,
+              sine * cosine - device_factor * sine * cosine],
+             [sine * cosine - device_factor * sine * cosine,
+              sine + device_factor * cosine ** 2]],
+            dtype=complex)
+
+    @classmethod
+    def from_matrix(cls, matrix):
+        JM = cls(0, 0)
+        JM._matrix = matrix
+        return JM
+
+    @classmethod
+    def device_factor(cls, transparency=0.0, retardance=0.0):
+        return transparency * np.exp(1j * retardance)
 
 
 class MuellerMatrix(_Matrix):
