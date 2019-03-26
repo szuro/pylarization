@@ -17,7 +17,6 @@ class TestJonesMatrix(unittest.TestCase):
             self.linear_horizontal.matrix,
             JonesMatrixOpticalElements.HORIZONTAL_LINEAR_POLARIZER.value.matrix
             ))
-        print(self.linear_vertical.matrix)
         self.assertTrue(np.allclose(
             self.linear_vertical.matrix,
             JonesMatrixOpticalElements.VERTICAL_LINEAR_POLARIZER.value.matrix
