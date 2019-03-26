@@ -1,6 +1,8 @@
 import unittest
 import numpy as np
 from numpy import pi, array_equal
+from pylarization.vectors import JonesVector
+from pylarization.polarizations import JonesVectorState
 from pylarization.matrices import JonesMatrix
 from pylarization.elements import JonesMatrixOpticalElements
 
@@ -38,3 +40,26 @@ class TestJonesMatrixClassmethods(unittest.TestCase):
                          dtype=complex)
                          )
                         )
+
+
+class TestJonesMatrixCalculations(unittest.TestCase):
+    def setUp(self):
+        self.vector = JonesVector(1, 1)
+        self.matrix = JonesMatrix.from_matrix([[1, 0],
+                                               [0, -1j]])
+
+    def test_vector_multiplication(self):
+        result = self.matrix * self.vector
+        self.assertIsInstance(result, JonesVector)
+        self.assertTrue(np.allclose(result.vector, JonesVector(1, -1j).vector))
+
+    def test_matrix_multiplication(self):
+        result = self.matrix * self.matrix
+        self.assertIsInstance(result, JonesMatrix)
+        self.assertTrue(np.allclose(result.matrix, np.array([[1, 0],
+                                                             [0, -1]])))
+
+    def test_cascade_multiplication(self):
+        result = self.matrix * self.matrix * self.vector
+        self.assertIsInstance(result, JonesVector)
+        self.assertTrue(np.allclose(result.vector, JonesVector(1, -1).vector))
