@@ -52,6 +52,10 @@ class TestJonesMatrixCalculations(unittest.TestCase):
         self.assertIsInstance(result, JonesVector)
         self.assertTrue(np.allclose(result.vector, JonesVector(1, -1j).vector))
 
+    def test_vector_multiplication_with_wrong_order(self):
+        with self.assertRaises(ValueError):
+            self.vector * self.matrix
+
     def test_matrix_multiplication(self):
         result = self.matrix * self.matrix
         self.assertIsInstance(result, JonesMatrix)
