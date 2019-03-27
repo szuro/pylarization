@@ -23,11 +23,11 @@ class _Matrix(abc.ABC):
 
     def __mul__(self, other):
         if isinstance(other, self._vector_class):
-            product = self._matrix * other.vector
+            product = self._matrix @ other.vector
             return self._vector_class.from_matrix(product)
         elif isinstance(other, type(self)):
-            product = self._matrix * other.matrix
-            return type(self)(product)
+            product = self._matrix @ other.matrix
+            return type(self).from_matrix(product)
 
     def __rmul__(self, other):
         raise ValueError("Wrong operation order")
@@ -71,7 +71,7 @@ class JonesMatrix(_Matrix):
     @classmethod
     def from_matrix(cls, matrix):
         JM = cls(0, 0)
-        JM._matrix = matrix
+        JM._matrix = np.array(matrix)
         return JM
 
     @classmethod
