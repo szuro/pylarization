@@ -32,6 +32,18 @@ class _Matrix(abc.ABC):
     def __rmatmul__(self, other):
         raise ValueError("Wrong operation order")
 
+    def __mul__(self, other):
+        print(
+            "Multiplication operator (*) will be repurposed in later versions."\
+            "Use @ operator instead.")
+        return self.__matmul__(other)
+
+    def __rmul__(self, other):
+        print(
+            "Multiplication operator (*) will be repurposed in later versions."\
+            "Use @ operator instead.")
+        raise ValueError("Wrong operation order")
+
     @property
     def matrix(self):
         return self._matrix
