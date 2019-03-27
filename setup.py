@@ -14,7 +14,7 @@ with open(path.join(here, 'README.rst'), 'r') as f:
 
 setup(
     name='pylarization',
-    version='0.1.7',
+    version='0.1.8',
     description='Package for polarization state calculations',
     long_description=long_description,
     long_description_content_type="text/x-rst",
