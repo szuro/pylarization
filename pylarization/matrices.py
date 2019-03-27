@@ -21,7 +21,7 @@ class _Matrix(abc.ABC):
         if matrix_.shape != self._required_shape:
             raise ValueError("Wrong matrix shape")
 
-    def __mul__(self, other):
+    def __matmul__(self, other):
         if isinstance(other, self._vector_class):
             product = self._matrix @ other.vector
             return self._vector_class.from_matrix(product)
@@ -29,7 +29,7 @@ class _Matrix(abc.ABC):
             product = self._matrix @ other.matrix
             return type(self).from_matrix(product)
 
-    def __rmul__(self, other):
+    def __rmatmul__(self, other):
         raise ValueError("Wrong operation order")
 
     @property
