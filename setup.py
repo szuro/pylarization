@@ -27,9 +27,9 @@ setup(
         'Topic :: Scientific/Engineering :: Physics',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
+        'Programming Language :: Python :: 3.8'
     ],
     keywords='polarization light ellipse jones stokes mueller coherency',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
