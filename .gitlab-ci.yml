@@ -7,21 +7,20 @@ stages:
   - build
   - publish
 
-.tests:
+test:
+  image: ubuntu:bionic
+  variables:
+    DEBIAN_FRONTEND: "noninteractive"
+    DEBCONF_NONINTERACTIVE_SEEN: "true"
+  before_script:
+    - apt-get update
+    - apt-get install -y software-properties-common
+    - apt-get update
+    - add-apt-repository -y ppa:deadsnakes/ppa
+    - apt install -y python3.6 python3.7 python3.8 python3-pip
+    - pip3 install numpy tox
   script:
-  - python -m unittest discover tests
-
-testpython35:
-  extends: .tests
-  image: python:3.5
-
-testpython36:
-  extends: .tests
-  image: python:3.6
-
-testpython37:
-  extends: .tests
-  image: python:3.7
+    - tox
 
 pack:
   image: python:3.6
