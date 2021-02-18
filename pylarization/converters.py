@@ -11,9 +11,9 @@ def jones_to_stokes(jones):
     """
     Ex, Ey = jones.vector
     I = 1
-    M = Ex * np.conj(Ex) - Ey * np.conj(Ey)
-    C = Ex * np.conj(Ex) + Ey * np.conj(Ey)
-    S = (Ex * np.conj(Ex) + Ey * np.conj(Ey)).imag
+    M = (Ex * np.conj(Ex) - Ey * np.conj(Ey)).item().real
+    C = (Ex * np.conj(Ex) + Ey * np.conj(Ey)).item().real
+    S = (Ex * np.conj(Ex) + Ey * np.conj(Ey)).item().imag
 
     return StokesVector(I, M, C, S)
 
